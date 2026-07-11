@@ -23,6 +23,12 @@ export default function Header() {
               {s.name}
             </Link>
           ))}
+          <Link
+            href="/our-work"
+            className="text-sm text-slate-600 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          >
+            Our Work
+          </Link>
         </nav>
 
         <a

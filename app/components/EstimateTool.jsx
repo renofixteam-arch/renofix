@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { SITE } from "../../lib/site";
+import { getSupabase } from "../../lib/supabase";
 
-const SERVICES = {
+const DEFAULT_RATES = {
   apartment: { label: "Apartment Renovation", unit: "sqft", low: 80, high: 160, min: 15000 },
   villa: { label: "Villa Renovation", unit: "sqft", low: 90, high: 200, min: 40000 },
   bathroom: { label: "Bathroom Renovation", unit: "bathroom", low: 12000, high: 28000, min: 12000 },
@@ -33,17 +34,42 @@ function formatAED(n) {
 }
 
 export default function EstimateTool({ defaultService = "apartment", areaName = "" }) {
+  const [ratesMap, setRatesMap] = useState(DEFAULT_RATES);
   const [serviceKey, setServiceKey] = useState(
-    SERVICES[defaultService] ? defaultService : "apartment"
+    DEFAULT_RATES[defaultService] ? defaultService : "apartment"
   );
   const [tierKey, setTierKey] = useState("standard");
   const [quantity, setQuantity] = useState("");
 
   useEffect(() => {
-    if (SERVICES[defaultService]) setServiceKey(defaultService);
+    if (DEFAULT_RATES[defaultService]) setServiceKey(defaultService);
   }, [defaultService]);
 
-  const service = SERVICES[serviceKey];
+  // Pull live rates from Supabase; keep defaults as fallback.
+  useEffect(() => {
+    async function loadRates() {
+      const supabase = getSupabase();
+      if (!supabase) return;
+      const { data, error } = await supabase
+        .from("estimate_rates")
+        .select("key,label,unit,low,high,min");
+      if (error || !data) return;
+      const merged = { ...DEFAULT_RATES };
+      for (const r of data) {
+        merged[r.key] = {
+          label: r.label,
+          unit: r.unit,
+          low: Number(r.low),
+          high: Number(r.high),
+          min: Number(r.min),
+        };
+      }
+      setRatesMap(merged);
+    }
+    loadRates();
+  }, []);
+
+  const service = ratesMap[serviceKey] || DEFAULT_RATES.apartment;
   const tier = TIERS[tierKey];
 
   const estimate = useMemo(() => {
@@ -83,7 +109,7 @@ export default function EstimateTool({ defaultService = "apartment", areaName = 
             }}
             className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/30 dark:border-slate-700 dark:bg-slate-800"
           >
-            {Object.entries(SERVICES).map(([key, s]) => (
+            {Object.entries(ratesMap).map(([key, s]) => (
               <option key={key} value={key}>
                 {s.label}
               </option>
