@@ -18,8 +18,25 @@ export default function ProjectsAdmin() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Apartment");
   const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [dims, setDims] = useState(null);
   const [status, setStatus] = useState("");
   const [uploading, setUploading] = useState(false);
+
+  function pick(f) {
+    setFile(f || null);
+    setDims(null);
+    if (preview) URL.revokeObjectURL(preview);
+    if (f) {
+      const url = URL.createObjectURL(f);
+      setPreview(url);
+      const img = new Image();
+      img.onload = () => setDims({ w: img.naturalWidth, h: img.naturalHeight });
+      img.src = url;
+    } else {
+      setPreview(null);
+    }
+  }
 
   async function load() {
     const res = await fetch("/api/admin/projects");
@@ -52,6 +69,8 @@ export default function ProjectsAdmin() {
     if (res.ok) {
       setTitle("");
       setFile(null);
+      setPreview(null);
+      setDims(null);
       setStatus("Uploaded.");
       load();
     } else {
@@ -106,13 +125,31 @@ export default function ProjectsAdmin() {
             </select>
           </div>
           <div className="sm:col-span-2">
-            <label className="mb-1.5 block text-sm font-medium">Image</label>
+            <div className="flex items-center justify-between">
+              <label className="mb-1.5 block text-sm font-medium">Image</label>
+              <span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                gallery ratio 4:3
+              </span>
+            </div>
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => setFile(e.target.files?.[0] || null)}
+              onChange={(e) => pick(e.target.files?.[0] || null)}
               className="block w-full text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-amber-500 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-900 dark:text-slate-400"
             />
+            {preview && (
+              <div className="mt-3">
+                <div
+                  className="w-full max-w-xs overflow-hidden rounded-xl border border-dashed border-slate-300 dark:border-slate-700"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
+                  <img src={preview} alt="" className="h-full w-full object-cover" />
+                </div>
+                <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+                  This is how it will crop in the gallery{dims && ` · ${dims.w}×${dims.h}px`}
+                </p>
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-4 flex items-center gap-4">

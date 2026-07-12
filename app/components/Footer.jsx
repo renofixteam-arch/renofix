@@ -41,6 +41,11 @@ export default function Footer() {
                 Our Work
               </Link>
             </li>
+            <li>
+              <Link href="/request" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
+                Request a service
+              </Link>
+            </li>
           </ul>
         </div>
 

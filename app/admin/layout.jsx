@@ -19,8 +19,17 @@ export default function AdminLayout({ children }) {
             <Link href="/admin/rates" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
               Rates
             </Link>
+            <Link href="/admin/images" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
+              Site Images
+            </Link>
             <Link href="/admin/projects" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
-              Projects
+              Gallery
+            </Link>
+            <Link href="/admin/leads" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
+              Leads
+            </Link>
+            <Link href="/admin/seo" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
+              SEO
             </Link>
             <Link href="/" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
               View site

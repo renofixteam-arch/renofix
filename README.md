@@ -77,3 +77,45 @@ Then redeploy (Vercel > Deployments > Redeploy) so the variables take effect.
 Security notes: the anon key is public by design and only allows reading.
 All writes go through server routes that check your admin password and use
 the service_role key, which is never exposed to the browser.
+
+---
+
+## Section images (Hero + Service pages) — added in v2
+
+New admin area to set a background image per section, each with a ratio-accurate preview.
+
+### One-time database step
+Run `SUPABASE_SETUP_2.sql` once in Supabase > SQL Editor (adds the `site_images` table).
+It reuses the existing `projects` storage bucket, so no new bucket is needed.
+
+### Using it
+- `/admin/images` — Site Images: set the homepage hero background and a banner for each
+  service page. The frame under each slot shows the exact crop that will appear live.
+- `/admin/projects` — Gallery: upload project photos (now with a 4:3 crop preview).
+- Admin nav: Rates · Site Images · Gallery.
+
+Images are read on the public site client-side, so changes go live without a redeploy.
+Hero/service backgrounds use a readability overlay so text stays legible over any photo.
+
+---
+
+## Leads + SEO tools — added in v3
+
+### One-time database step
+Run `SUPABASE_SETUP_3.sql` once in Supabase > SQL Editor (adds `leads` and `seo_keywords`
+tables). Both are private — only the server (service_role key) can read/write them.
+
+### Service request form → Leads
+- Public form at `/request` (also linked in the header, footer and homepage CTA).
+- Submissions save privately and appear in `/admin/leads`, where you can mark them
+  contacted, WhatsApp/call the person, or delete.
+
+### SEO tools (`/admin/seo`)
+- Target-keyword tracker for planning.
+- Direct links to Google Search Console (the free, official source of real ranking data)
+  and PageSpeed Insights.
+- Note: a keyword list alone does not change rankings — Google ignores the meta-keywords
+  tag. Rankings improve from using keywords naturally in titles/headings/content, plus
+  Google Business Profile, reviews and backlinks.
+
+Admin nav: Rates · Site Images · Gallery · Leads · SEO.

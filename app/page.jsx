@@ -5,6 +5,8 @@ import {
   Calculator, ClipboardCheck, Hammer, ArrowRight, MapPin,
 } from "./components/icons";
 import EstimateTool from "./components/EstimateTool";
+import RecentWork from "./components/RecentWork";
+import SlotBackground from "./components/SlotBackground";
 import { SITE } from "../lib/site";
 import { SERVICES, AREAS } from "../lib/renofix-data";
 
@@ -40,11 +42,33 @@ export default function HomePage() {
     <main>
       {/* ---------- HERO ---------- */}
       <section className="relative overflow-hidden border-b border-slate-200 dark:border-slate-800">
+        <SlotBackground imageKey="hero" />
         <div className="bp-grid absolute inset-0" aria-hidden="true" />
         <div
           className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-amber-400/20 blur-3xl"
           aria-hidden="true"
         />
+        <svg
+          className="pointer-events-none absolute bottom-0 right-4 hidden h-72 w-[36rem] text-amber-500/[0.12] lg:block dark:text-amber-400/[0.10]"
+          viewBox="0 0 640 300"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M60 290h520" />
+          <path d="M120 290V150l120-70 120 70v140" />
+          <path d="M120 150l120-70 120 70" />
+          <rect x="165" y="180" width="45" height="45" />
+          <rect x="270" y="180" width="45" height="45" />
+          <path d="M215 290v-40h50v40" />
+          <path d="M360 210h180v80H360z" />
+          <path d="M360 210l90-45 90 45" />
+          <rect x="400" y="235" width="40" height="40" />
+          <rect x="465" y="235" width="40" height="40" />
+        </svg>
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-12 sm:px-6 sm:pt-20 lg:pt-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -139,6 +163,8 @@ export default function HomePage() {
           })}
         </div>
       </section>
+
+      <RecentWork />
 
       {/* ---------- WHY US ---------- */}
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
@@ -245,14 +271,12 @@ export default function HomePage() {
               >
                 Get instant estimate <ArrowRight size={16} />
               </a>
-              <a
-                href={`https://wa.me/${SITE.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/request"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
               >
-                Talk on WhatsApp
-              </a>
+                Request a service
+              </Link>
             </div>
           </div>
         </div>

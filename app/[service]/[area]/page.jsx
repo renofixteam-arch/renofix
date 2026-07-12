@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import EstimateTool from "../../components/EstimateTool";
+import SlotBackground from "../../components/SlotBackground";
 import { SITE } from "../../../lib/site";
 import { SERVICES, AREAS, getService, getArea, allServiceAreaParams } from "../../../lib/renofix-data";
 
@@ -74,8 +75,9 @@ export default function ServiceAreaPage({ params }) {
         <span className="text-slate-700 dark:text-slate-300">{area.name}</span>
       </nav>
 
-      <section className="mx-auto max-w-6xl px-4 pt-6 pb-10 sm:px-6 lg:pt-10">
-        <div className="grid items-start gap-10 lg:grid-cols-2">
+      <section className="relative overflow-hidden">
+        <SlotBackground imageKey={`service:${service.slug}`} />
+        <div className="relative z-10 mx-auto grid max-w-6xl items-start gap-10 px-4 pt-6 pb-10 sm:px-6 lg:grid-cols-2 lg:pt-10">
           <div>
             <span className="inline-block rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300">
               {area.name}, Dubai

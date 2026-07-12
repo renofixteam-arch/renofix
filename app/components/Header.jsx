@@ -36,6 +36,12 @@ export default function Header() {
           >
             Our Work
           </Link>
+          <Link
+            href="/request"
+            className="text-sm text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
+          >
+            Request
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -77,6 +83,13 @@ export default function Header() {
               className="rounded-lg px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-900"
             >
               Our Work
+            </Link>
+            <Link
+              href="/request"
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-900"
+            >
+              Request a service
             </Link>
             <a
               href={`https://wa.me/${SITE.whatsapp}`}
