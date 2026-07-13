@@ -42,6 +42,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/cost-calculator" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
+                Cost Calculator
+              </Link>
+            </li>            <li>
               <Link href="/request" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
                 Request a service
               </Link>

@@ -117,6 +117,12 @@ export default function HomePage() {
 
             <div id="estimate" className="scroll-mt-24">
               <EstimateTool />
+              <p className="mt-3 text-center text-sm text-slate-500 dark:text-slate-400">
+                Prefer a guided estimate?{" "}
+                <Link href="/cost-calculator" className="font-medium text-amber-600 hover:underline dark:text-amber-400">
+                  Use the full Cost Calculator
+                </Link>
+              </p>
             </div>
           </div>
         </div>

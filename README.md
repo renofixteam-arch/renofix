@@ -128,3 +128,14 @@ When you choose a file in Site Images or the Gallery, an in-browser editor appea
 target ratio frame. Drag to reposition and use the zoom slider to fill the frame; the crop
 you see is exactly what gets saved and shown on the site. No new database step required —
 uses the existing tables. Cropped images are saved as optimized JPEGs.
+
+---
+
+## Cost Calculator (multi-step) — added in v9
+
+A guided, Turnkey-style calculator at `/cost-calculator` (linked in header, footer, hero):
+property type → scope → size → finish → contact → instant estimate.
+On the final step it saves the person as a lead in `/admin/leads` (with the estimate details)
+and shows the estimated range plus a prefilled WhatsApp button. The quick hero estimate tool
+stays for instant ballparks. No new database step — reuses the `leads` and `estimate_rates`
+tables. Also updated `lib/site.js` url to https://renofixplus.ae.

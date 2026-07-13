@@ -8,7 +8,7 @@ import { SERVICES } from "../../lib/renofix-data";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const navServices = SERVICES.slice(0, 4);
+  const navServices = SERVICES.slice(0, 3);
 
   const link =
     "whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white";
@@ -29,6 +29,9 @@ export default function Header() {
               {s.name}
             </Link>
           ))}
+          <Link href="/cost-calculator" className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-amber-600 transition-colors hover:bg-amber-500/10 dark:text-amber-400">
+            Cost Calculator
+          </Link>
           <Link href="/our-work" className={link}>
             Our Work
           </Link>
@@ -73,6 +76,13 @@ export default function Header() {
                 {s.name}
               </Link>
             ))}
+            <Link
+              href="/cost-calculator"
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-semibold text-amber-600 transition-colors hover:bg-amber-500/10 dark:text-amber-400"
+            >
+              Cost Calculator
+            </Link>
             <Link
               href="/our-work"
               onClick={() => setOpen(false)}
