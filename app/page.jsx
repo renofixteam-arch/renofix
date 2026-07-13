@@ -4,7 +4,7 @@ import {
   ShieldCheck, BadgeCheck, ReceiptText, CalendarClock,
   Calculator, ClipboardCheck, Hammer, ArrowRight, MapPin,
 } from "./components/icons";
-import EstimateTool from "./components/EstimateTool";
+import EstimateWizard from "./components/EstimateWizard";
 import RecentWork from "./components/RecentWork";
 import SlotBackground from "./components/SlotBackground";
 import { SITE } from "../lib/site";
@@ -90,7 +90,7 @@ export default function HomePage() {
                   href="#estimate"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
                 >
-                  Get instant estimate <ArrowRight size={16} />
+                  Calculate my cost <ArrowRight size={16} />
                 </a>
                 <a
                   href={`https://wa.me/${SITE.whatsapp}`}
@@ -116,13 +116,7 @@ export default function HomePage() {
             </div>
 
             <div id="estimate" className="scroll-mt-24">
-              <EstimateTool />
-              <p className="mt-3 text-center text-sm text-slate-500 dark:text-slate-400">
-                Prefer a guided estimate?{" "}
-                <Link href="/cost-calculator" className="font-medium text-amber-600 hover:underline dark:text-amber-400">
-                  Use the full Cost Calculator
-                </Link>
-              </p>
+              <EstimateWizard />
             </div>
           </div>
         </div>
@@ -275,7 +269,7 @@ export default function HomePage() {
                 href="#estimate"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-amber-400"
               >
-                Get instant estimate <ArrowRight size={16} />
+                Calculate my cost <ArrowRight size={16} />
               </a>
               <Link
                 href="/request"

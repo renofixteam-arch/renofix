@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import EstimateTool from "../components/EstimateTool";
+import EstimateWizard from "../components/EstimateWizard";
 import SlotBackground from "../components/SlotBackground";
 import { SITE } from "../../lib/site";
 import { SERVICES, getService, areasForService } from "../../lib/renofix-data";
@@ -84,7 +84,7 @@ export default function ServicePage({ params }) {
             </div>
           </div>
           <div id="estimate" className="scroll-mt-24">
-            <EstimateTool defaultService={service.estimateKey} />
+            <EstimateWizard />
           </div>
         </div>
       </section>
