@@ -6,6 +6,7 @@ import { SITE } from "../../lib/site";
 import { AREAS } from "../../lib/renofix-data";
 import { DEFAULT_RATES, TIERS, formatAED, computeRange } from "../../lib/estimate";
 import { Building2, Home, ArrowRight } from "./icons";
+import { isValidUaePhone } from "../../lib/phone";
 
 const PROPERTY = [
   { key: "apartment", label: "Apartment", Icon: Building2 },
@@ -48,7 +49,7 @@ export default function EstimateWizard() {
   const [step, setStep] = useState(1);
   const [a, setA] = useState({
     property: "", bedroom: "", bathroom: "2", kitchen: "1", finish: "standard",
-    name: "", phone: "", area: "", company: "",
+    name: "", phone: "", area: "", areaOther: "", company: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -105,6 +106,10 @@ export default function EstimateWizard() {
       setError("Please add your name and phone.");
       return;
     }
+    if (!isValidUaePhone(a.phone)) {
+      setError("Please enter a valid UAE mobile number (e.g. 05x xxx xxxx).");
+      return;
+    }
     setSubmitting(true);
     setError("");
     const propLabel = PROPERTY.find((p) => p.key === a.property)?.label || a.property;
@@ -117,7 +122,7 @@ export default function EstimateWizard() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: a.name, phone: a.phone, area: a.area,
+          name: a.name, phone: a.phone, area: a.area === "Other" ? (a.areaOther.trim() || "Other") : a.area,
           service: `Full renovation (${propLabel})`, message: msg,
         }),
       });
@@ -255,6 +260,9 @@ export default function EstimateWizard() {
               {AREAS.map((ar) => <option key={ar.slug} value={ar.name}>{ar.name}</option>)}
               <option value="Other">Other</option>
             </select>
+            {a.area === "Other" && (
+              <input className={field} placeholder="Type your area" value={a.areaOther} onChange={(e) => set("areaOther", e.target.value)} />
+            )}
           </div>
           <input type="text" tabIndex={-1} autoComplete="off" value={a.company} onChange={(e) => set("company", e.target.value)} className="hidden" aria-hidden="true" />
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}

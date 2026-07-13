@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { SERVICES, AREAS } from "../../lib/renofix-data";
+import { isValidUaePhone } from "../../lib/phone";
 
 export default function ServiceRequestForm() {
   const [form, setForm] = useState({
-    name: "", phone: "", service: "", area: "", message: "", company: "",
+    name: "", phone: "", service: "", area: "", areaOther: "", message: "", company: "",
   });
   const [status, setStatus] = useState("idle"); // idle | sending | done | error
   const [error, setError] = useState("");
@@ -19,12 +20,16 @@ export default function ServiceRequestForm() {
       setError("Please add your name and phone number.");
       return;
     }
+    if (!isValidUaePhone(form.phone)) {
+      setError("Please enter a valid UAE mobile number (e.g. 05x xxx xxxx).");
+      return;
+    }
     setStatus("sending");
     setError("");
     const res = await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, area: form.area === "Other" ? (form.areaOther.trim() || "Other") : form.area }),
     });
     if (res.ok) {
       setStatus("done");

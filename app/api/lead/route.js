@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "../../../lib/supabase-admin";
+import { isValidUaePhone } from "../../../lib/phone";
 
 export async function POST(request) {
   const supabase = getServiceClient();
@@ -16,6 +17,9 @@ export async function POST(request) {
 
   if (!name || !phone) {
     return NextResponse.json({ error: "Name and phone are required." }, { status: 400 });
+  }
+  if (!isValidUaePhone(phone)) {
+    return NextResponse.json({ error: "Please enter a valid UAE mobile number." }, { status: 400 });
   }
 
   const { error } = await supabase
