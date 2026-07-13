@@ -25,6 +25,13 @@ const AREA_SQFT = {
   villa: { "3": 2600, "4": 3600, "5": 4800, "6": 6000 },
 };
 
+// Estimated project duration in weeks [low, high]
+const DURATION = {
+  apartment: { studio: [3, 5], "1": [4, 6], "2": [5, 8], "3": [6, 10], "4": [8, 12] },
+  townhouse: { "2": [7, 11], "3": [8, 13], "4": [10, 16], "5": [12, 18] },
+  villa: { "3": [9, 14], "4": [11, 17], "5": [13, 20], "6": [15, 24] },
+};
+
 const FINISHES = [
   { key: "standard", label: "Standard", desc: "Quality materials, great value" },
   { key: "premium", label: "Premium", desc: "High-end finishes throughout" },
@@ -40,7 +47,7 @@ export default function EstimateWizard() {
   const [rates, setRates] = useState(DEFAULT_RATES);
   const [step, setStep] = useState(1);
   const [a, setA] = useState({
-    property: "", bedroom: "", finish: "standard",
+    property: "", bedroom: "", bathroom: "2", kitchen: "1", finish: "standard",
     name: "", phone: "", area: "", company: "",
   });
   const [submitting, setSubmitting] = useState(false);
@@ -67,10 +74,26 @@ export default function EstimateWizard() {
   const estimate = useMemo(() => {
     if (!a.property || !a.bedroom) return null;
     const area = AREA_SQFT[a.property]?.[a.bedroom];
-    const rate = rates[rateKey(a.property)];
-    if (!area || !rate) return null;
-    return computeRange(rate, area, TIERS[a.finish].factor);
-  }, [a.property, a.bedroom, a.finish, rates]);
+    const base = rates[rateKey(a.property)];
+    if (!area || !base) return null;
+    const f = TIERS[a.finish].factor;
+    const bathR = rates.bathroom;
+    const kitR = rates.kitchen;
+    const nBath = parseInt(a.bathroom) || 0;
+    const nKit = parseInt(a.kitchen) || 0;
+    let low = area * base.low * f;
+    let high = area * base.high * f;
+    if (bathR) { low += nBath * bathR.low * f; high += nBath * bathR.high * f; }
+    if (kitR) { low += nKit * kitR.low * f; high += nKit * kitR.high * f; }
+    low = Math.max(base.min, low);
+    high = Math.max(base.min * 1.4, high);
+    return { low, high };
+  }, [a.property, a.bedroom, a.bathroom, a.kitchen, a.finish, rates]);
+
+  const duration = useMemo(() => {
+    if (!a.property || !a.bedroom) return null;
+    return DURATION[a.property]?.[a.bedroom] || null;
+  }, [a.property, a.bedroom]);
 
   const canContinue =
     (step === 1 && a.property) ||
@@ -87,7 +110,8 @@ export default function EstimateWizard() {
     const propLabel = PROPERTY.find((p) => p.key === a.property)?.label || a.property;
     const bedLabel = (BEDROOMS[a.property] || []).find(([k]) => k === a.bedroom)?.[1] || a.bedroom;
     const range = estimate ? `${formatAED(estimate.low)} - ${formatAED(estimate.high)}` : "n/a";
-    const msg = `Cost calculator: ${propLabel} · ${bedLabel} · ${TIERS[a.finish].label} finish. Estimated ${range}.`;
+    const dur = duration ? ` Duration ~${duration[0]}-${duration[1]} weeks.` : "";
+    const msg = `Cost calculator: ${propLabel} · ${bedLabel} · ${a.bathroom} bath · ${a.kitchen} kitchen · ${TIERS[a.finish].label} finish. Estimated ${range}.${dur}`;
     try {
       await fetch("/api/lead", {
         method: "POST",
@@ -134,6 +158,11 @@ export default function EstimateWizard() {
         ) : (
           <p className="mt-2 text-slate-600">We&apos;ll prepare your estimate.</p>
         )}
+        {duration && (
+          <div className="mx-auto mt-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-sm font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+            Estimated duration: {duration[0]}–{duration[1]} weeks
+          </div>
+        )}
         <p className="mx-auto mt-4 max-w-sm text-sm text-slate-600 dark:text-slate-400">
           Indicative only. Our team will contact you shortly to arrange a free site visit and an
           exact fixed-price quote.
@@ -173,11 +202,30 @@ export default function EstimateWizard() {
 
       {step === 2 && (
         <div className="mt-3">
-          <h3 className="font-display text-xl font-bold">How big is it?</h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Number of bedrooms.</p>
-          <div className="mt-4 flex flex-wrap gap-2.5">
+          <h3 className="font-display text-xl font-bold">About your property</h3>
+
+          <p className="mt-4 text-sm font-semibold text-slate-700 dark:text-slate-300">Bedrooms</p>
+          <div className="mt-2 flex flex-wrap gap-2.5">
             {(BEDROOMS[a.property] || []).map(([k, label]) => (
               <button key={k} type="button" onClick={() => set("bedroom", k)} className={pill(a.bedroom === k)}>
+                {label}
+              </button>
+            ))}
+          </div>
+
+          <p className="mt-5 text-sm font-semibold text-slate-700 dark:text-slate-300">Bathrooms</p>
+          <div className="mt-2 flex flex-wrap gap-2.5">
+            {[["1", "1"], ["2", "2"], ["3", "3"], ["4", "4+"]].map(([k, label]) => (
+              <button key={k} type="button" onClick={() => set("bathroom", k)} className={pill(a.bathroom === k)}>
+                {label}
+              </button>
+            ))}
+          </div>
+
+          <p className="mt-5 text-sm font-semibold text-slate-700 dark:text-slate-300">Kitchens</p>
+          <div className="mt-2 flex flex-wrap gap-2.5">
+            {[["1", "1"], ["2", "2"], ["0", "None"]].map(([k, label]) => (
+              <button key={k} type="button" onClick={() => set("kitchen", k)} className={pill(a.kitchen === k)}>
                 {label}
               </button>
             ))}
@@ -192,15 +240,6 @@ export default function EstimateWizard() {
               </button>
             ))}
           </div>
-
-          {estimate && (
-            <div className="mt-5 rounded-2xl bg-slate-50 p-4 text-center dark:bg-slate-800/60">
-              <p className="text-xs text-slate-500 dark:text-slate-400">Estimated range</p>
-              <p className="mt-0.5 font-display text-2xl font-extrabold">
-                {formatAED(estimate.low)} <span className="text-slate-300">–</span> {formatAED(estimate.high)}
-              </p>
-            </div>
-          )}
         </div>
       )}
 
