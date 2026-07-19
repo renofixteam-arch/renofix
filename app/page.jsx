@@ -18,10 +18,13 @@ const SERVICE_ICONS = {
   "mep-works": Zap,
   "swimming-pool-construction": Waves,
   landscaping: Trees,
+  "painting-flooring": Hammer,
+  "false-ceiling-partitions": Building2,
+  "home-maintenance": ShieldCheck,
 };
 
 const VALUES = [
-  { icon: BadgeCheck, title: "Licensed & accountable", body: `Fully licensed contractor (DED ${SITE.licence}). One team owns your project end to end.` },
+  { icon: BadgeCheck, title: "Licensed & accountable", body: `Fully licensed contractor. One team owns your project end to end.` },
   { icon: ReceiptText, title: "Fixed, transparent pricing", body: "A clear BOQ before we start. No hidden costs, no surprises mid-project." },
   { icon: ShieldCheck, title: "Workmanship warranty", body: "We stand behind the work — especially the parts you can't see, like waterproofing." },
   { icon: CalendarClock, title: "On-time delivery", body: "A committed timeline shared upfront, with communication at every stage." },

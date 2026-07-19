@@ -48,7 +48,7 @@ export default function ServiceRequestForm() {
         </div>
         <h3 className="mt-4 font-display text-lg font-semibold">Request received</h3>
         <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400">
-          Thanks — our team will contact you shortly to arrange a free site visit.
+          Thanks — our team will contact you within 24 hours to arrange a free site visit.
         </p>
       </div>
     );

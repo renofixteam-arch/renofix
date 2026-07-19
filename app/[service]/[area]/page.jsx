@@ -117,7 +117,7 @@ export default function ServiceAreaPage({ params }) {
 
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 lg:grid-cols-4">
-          {[["Licensed", `DED Licence ${SITE.licence}`], ["Local team", `Serving ${area.name}`], ["Fixed pricing", "No hidden costs"], ["Warranty", "Workmanship guaranteed"]].map(([k, v]) => (
+          {[["Licensed", "Fully licensed in Dubai"], ["Local team", `Serving ${area.name}`], ["Fixed pricing", "No hidden costs"], ["Warranty", "Workmanship guaranteed"]].map(([k, v]) => (
             <div key={k}>
               <p className="text-sm font-bold">{k}</p>
               <p className="text-xs text-slate-600 dark:text-slate-400">{v}</p>

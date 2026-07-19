@@ -169,7 +169,7 @@ export default function EstimateWizard() {
           </div>
         )}
         <p className="mx-auto mt-4 max-w-sm text-sm text-slate-600 dark:text-slate-400">
-          Indicative only. Our team will contact you shortly to arrange a free site visit and an
+          Indicative only. Our team will contact you within 24 hours to arrange a free site visit and an
           exact fixed-price quote.
         </p>
         <a href={waHref} target="_blank" rel="noopener noreferrer" className="mt-6 flex w-full items-center justify-center rounded-xl bg-amber-500 px-5 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-amber-400">

@@ -19,7 +19,7 @@ export default function Footer() {
             Fixed pricing, licensed teams, warranty-backed work.
           </p>
           <p className="mt-4 text-xs text-slate-500 dark:text-slate-500">
-            DED Licence {SITE.licence}
+            Licensed contractor in Dubai
           </p>
         </div>
 
@@ -84,7 +84,8 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-200 py-5 text-center text-xs text-slate-500 dark:border-slate-800">
-        © {new Date().getFullYear()} RenoFix. All rights reserved.
+        © {new Date().getFullYear()} RenoFix. All rights reserved. ·{" "}
+        <Link href="/privacy" className="hover:text-amber-600 dark:hover:text-amber-400">Privacy Policy</Link>
       </div>
     </footer>
   );

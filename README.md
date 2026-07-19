@@ -139,3 +139,16 @@ On the final step it saves the person as a lead in `/admin/leads` (with the esti
 and shows the estimated range plus a prefilled WhatsApp button. The quick hero estimate tool
 stays for instant ballparks. No new database step — reuses the `leads` and `estimate_rates`
 tables. Also updated `lib/site.js` url to https://renofixplus.ae.
+
+---
+
+## Antonovich-inspired features — added in v16
+
+- Floating WhatsApp button on every page (app/components/FloatingWhatsApp.jsx).
+- "We reply within 24 hours" response-time promise on the calculator result and request form.
+- Privacy Policy page at /privacy (linked in the footer) — since the site collects lead details.
+- Licence number removed from all promotional/design content (footer, hero value props,
+  service-area trust band). "Licensed" wording kept; SITE.licence stays in code for
+  documentation/legal use only.
+- Three new service pages (more SEO surface): Painting & Flooring, False Ceiling & Partitions,
+  Home Maintenance & AMC — each with unique intro, scope and FAQs, auto-generating area pages.
