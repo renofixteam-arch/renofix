@@ -152,3 +152,12 @@ tables. Also updated `lib/site.js` url to https://renofixplus.ae.
   documentation/legal use only.
 - Three new service pages (more SEO surface): Painting & Flooring, False Ceiling & Partitions,
   Home Maintenance & AMC — each with unique intro, scope and FAQs, auto-generating area pages.
+
+---
+
+## Photo service cards — added in v17
+
+The homepage "Our services" grid is now clickable photo cards (image + title overlay, hover
+zoom), Antonovich-style. Each card uses the service's image set in /admin/images
+(key service:<slug>). Until an image is uploaded, a clean icon placeholder shows. Upload a
+banner for each service in Site Images to fill the cards with real photos.

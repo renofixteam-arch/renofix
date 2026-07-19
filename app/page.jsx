@@ -1,27 +1,14 @@
 import Link from "next/link";
 import {
-  Building2, Home, Bath, Utensils, Zap, Waves, Trees,
   ShieldCheck, BadgeCheck, ReceiptText, CalendarClock,
   Calculator, ClipboardCheck, Hammer, ArrowRight, MapPin,
 } from "./components/icons";
 import EstimateWizard from "./components/EstimateWizard";
 import RecentWork from "./components/RecentWork";
+import ServiceCards from "./components/ServiceCards";
 import SlotBackground from "./components/SlotBackground";
 import { SITE } from "../lib/site";
 import { SERVICES, AREAS } from "../lib/renofix-data";
-
-const SERVICE_ICONS = {
-  "apartment-renovation": Building2,
-  "villa-renovation": Home,
-  "bathroom-renovation": Bath,
-  "kitchen-renovation": Utensils,
-  "mep-works": Zap,
-  "swimming-pool-construction": Waves,
-  landscaping: Trees,
-  "painting-flooring": Hammer,
-  "false-ceiling-partitions": Building2,
-  "home-maintenance": ShieldCheck,
-};
 
 const VALUES = [
   { icon: BadgeCheck, title: "Licensed & accountable", body: `Fully licensed contractor. One team owns your project end to end.` },
@@ -142,29 +129,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => {
-            const Icon = SERVICE_ICONS[s.slug] || Building2;
-            return (
-              <Link
-                key={s.slug}
-                href={`/${s.slug}`}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/5 dark:border-slate-800 dark:bg-slate-900"
-              >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                  <Icon size={22} />
-                </span>
-                <h3 className="mt-4 font-display text-lg font-semibold">{s.name}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                  {s.intro.split(".")[0]}.
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-amber-600 opacity-0 transition group-hover:opacity-100 dark:text-amber-400">
-                  Learn more <ArrowRight size={14} />
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+        <ServiceCards />
       </section>
 
       <RecentWork />
