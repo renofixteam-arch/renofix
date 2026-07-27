@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "../../lib/supabase";
 import { SERVICES } from "../../lib/renofix-data";
+import ServiceArt from "./ServiceArt";
 import {
   Building2, Home, Bath, Utensils, Zap, Waves, Trees, Hammer, ShieldCheck, ArrowRight,
 } from "./icons";
@@ -58,8 +59,8 @@ export default function ServiceCards() {
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               ) : (
-                <div className="bp-grid absolute inset-0 flex items-center justify-center bg-slate-100 dark:bg-slate-900">
-                  <Icon size={44} className="text-amber-500/70" />
+                <div className="absolute inset-0">
+                  <ServiceArt slug={sv.slug} />
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent" />

@@ -171,3 +171,15 @@ articles: apartment renovation cost, bathroom renovation cost, and renovation NO
 Each page carries Article + FAQPage schema, internal links to the relevant service pages and
 the cost calculator, and appears in the sitemap. Add new guides by appending to lib/guides.js
 — the hub, routes and sitemap pick them up automatically. Linked from the header and footer.
+
+---
+
+## Default rates + service illustrations — added in v19
+
+- DEFAULT_RATES retuned to double-count-free Dubai values: apartment/villa per-sqft now cover
+  GENERAL AREAS ONLY (bathrooms and kitchens are added separately by the calculator). Live
+  values are still edited in /admin/rates — update those to match the code defaults.
+- Each service card now shows a branded blueprint-style line-art illustration by default
+  (app/components/ServiceArt.jsx) instead of a plain icon placeholder — so the grid looks
+  designed before any photo is uploaded. Uploading a real photo in /admin/images still
+  overrides the illustration.
