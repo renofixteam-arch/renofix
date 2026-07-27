@@ -161,3 +161,13 @@ The homepage "Our services" grid is now clickable photo cards (image + title ove
 zoom), Antonovich-style. Each card uses the service's image set in /admin/images
 (key service:<slug>). Until an image is uploaded, a clean icon placeholder shows. Upload a
 banner for each service in Site Images to fill the cards with real photos.
+
+---
+
+## SEO guides hub — added in v18
+
+New /guides section targeting high-intent Dubai search queries, with three long-form
+articles: apartment renovation cost, bathroom renovation cost, and renovation NOC/approvals.
+Each page carries Article + FAQPage schema, internal links to the relevant service pages and
+the cost calculator, and appears in the sitemap. Add new guides by appending to lib/guides.js
+— the hub, routes and sitemap pick them up automatically. Linked from the header and footer.

@@ -1,4 +1,5 @@
 import { SITE } from "../lib/site";
+import { GUIDES } from "../lib/guides";
 import { SERVICES, allServiceAreaParams } from "../lib/renofix-data";
 
 export default function sitemap() {
@@ -7,6 +8,13 @@ export default function sitemap() {
 
   const staticPages = [
     { url: `${SITE.url}/cost-calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE.url}/guides`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    ...GUIDES.map((g) => ({
+      url: `${SITE.url}/guides/${g.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    })),
     { url: `${SITE.url}/our-work`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE.url}/request`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE.url}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
