@@ -3,7 +3,8 @@ import Link from "next/link";
 import EstimateWizard from "../components/EstimateWizard";
 import SlotBackground from "../components/SlotBackground";
 import { SITE } from "../../lib/site";
-import { SERVICES, getService, areasForService } from "../../lib/renofix-data";
+import { SERVICES, getService, areasForService, SERVICE_GUIDE } from "../../lib/renofix-data";
+import { getGuide } from "../../lib/guides";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ service: s.slug }));
@@ -40,6 +41,17 @@ export default function ServicePage({ params }) {
     description: service.intro,
   };
 
+  const guide = getGuide(SERVICE_GUIDE[service.slug]);
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+      { "@type": "ListItem", position: 2, name: service.name, item: canonical },
+    ],
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -54,6 +66,7 @@ export default function ServicePage({ params }) {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <nav className="mx-auto max-w-6xl px-4 pt-6 text-xs text-slate-500 sm:px-6 dark:text-slate-400">
         <Link href="/" className="hover:underline">Home</Link>
@@ -118,6 +131,18 @@ export default function ServicePage({ params }) {
           ))}
         </div>
       </section>
+
+      {guide && (
+        <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+          <Link href={`/guides/${guide.slug}`} className="group flex items-center justify-between gap-4 rounded-2xl border border-amber-500/30 bg-amber-500/5 p-5 transition hover:border-amber-500/60">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">Helpful guide</p>
+              <p className="mt-1 font-display text-base font-semibold">{guide.title}</p>
+            </div>
+            <span className="whitespace-nowrap text-sm font-semibold text-amber-600 dark:text-amber-400">Read &rarr;</span>
+          </Link>
+        </section>
+      )}
 
       <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{service.name} FAQs</h2>

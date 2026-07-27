@@ -183,3 +183,14 @@ the cost calculator, and appears in the sitemap. Add new guides by appending to 
   (app/components/ServiceArt.jsx) instead of a plain icon placeholder — so the grid looks
   designed before any photo is uploaded. Uploading a real photo in /admin/images still
   overrides the illustration.
+
+---
+
+## SEO completion pass — added in v20
+
+- Three more guides (6 total): villa renovation cost, kitchen renovation cost, and how to
+  choose a renovation contractor in Dubai — each with Article + FAQ schema.
+- BreadcrumbList schema added to service pages and guide pages.
+- Root LocalBusiness schema enriched (priceRange, image, sameAs → Instagram).
+- Cross-linking: every service page now links to its most relevant guide (SERVICE_GUIDE map),
+  and the homepage has a guides teaser section — improving internal linking and crawl depth.

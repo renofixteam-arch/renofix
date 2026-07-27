@@ -47,6 +47,9 @@ const localBusinessSchema = {
   email: SITE.email,
   areaServed: { "@type": "City", name: "Dubai" },
   address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+  priceRange: "$$",
+  image: `${SITE.url}/og.png`,
+  sameAs: [`https://instagram.com/${SITE.instagram}`],
   makesOffer: [
     "Apartment Renovation",
     "Villa Renovation",

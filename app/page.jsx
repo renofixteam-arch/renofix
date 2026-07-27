@@ -9,6 +9,7 @@ import ServiceCards from "./components/ServiceCards";
 import SlotBackground from "./components/SlotBackground";
 import { SITE } from "../lib/site";
 import { SERVICES, AREAS } from "../lib/renofix-data";
+import { GUIDES } from "../lib/guides";
 
 const VALUES = [
   { icon: BadgeCheck, title: "Licensed & accountable", body: `Fully licensed contractor. One team owns your project end to end.` },
@@ -213,6 +214,30 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ---------- Guides teaser ---------- */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Renovation guides</h2>
+            <p className="mt-2 text-slate-600 dark:text-slate-400">
+              Straight answers on costs, approvals and planning in Dubai.
+            </p>
+          </div>
+          <Link href="/guides" className="hidden whitespace-nowrap text-sm font-semibold text-amber-600 hover:underline sm:inline dark:text-amber-400">
+            All guides &rarr;
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          {GUIDES.slice(0, 3).map((g) => (
+            <Link key={g.slug} href={`/guides/${g.slug}`} className="group rounded-2xl border border-slate-200 p-6 transition hover:border-amber-400 dark:border-slate-800">
+              <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{g.readTime}</p>
+              <h3 className="mt-2 font-display text-base font-semibold leading-snug">{g.title}</h3>
+              <span className="mt-3 inline-block text-sm font-semibold text-amber-600 dark:text-amber-400">Read guide &rarr;</span>
+            </Link>
+          ))}
         </div>
       </section>
 
