@@ -7,6 +7,7 @@ import { AREAS } from "../../lib/renofix-data";
 import { DEFAULT_RATES, TIERS, formatAED, computeRange } from "../../lib/estimate";
 import { Building2, Home, ArrowRight } from "./icons";
 import { isValidUaePhone } from "../../lib/phone";
+import { trackLead } from "./Analytics";
 
 const PROPERTY = [
   { key: "apartment", label: "Apartment", Icon: Building2 },
@@ -128,6 +129,7 @@ export default function EstimateWizard() {
       });
     } catch (e) {}
     setSubmitting(false);
+    trackLead("calculator");
     setDone(true);
   }
 

@@ -194,3 +194,13 @@ the cost calculator, and appears in the sitemap. Add new guides by appending to 
 - Root LocalBusiness schema enriched (priceRange, image, sameAs → Instagram).
 - Cross-linking: every service page now links to its most relevant guide (SERVICE_GUIDE map),
   and the homepage has a guides teaser section — improving internal linking and crawl depth.
+
+---
+
+## Google Ads conversion tracking — added in v21
+
+- Google tag (AW-18358000613) installed site-wide via app/components/Analytics.jsx.
+- Lead events fire on: WhatsApp link clicks (global listener), cost-calculator completion,
+  and request-form submission — as gtag "generate_lead" events.
+- To count these as Google Ads conversions, create a conversion action in Google Ads and put
+  its label in SITE.gads.leadLabel (lib/site.js). The "conversion" event then also fires.

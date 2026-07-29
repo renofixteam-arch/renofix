@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SERVICES, AREAS } from "../../lib/renofix-data";
 import { isValidUaePhone } from "../../lib/phone";
+import { trackLead } from "./Analytics";
 
 export default function ServiceRequestForm() {
   const [form, setForm] = useState({
@@ -32,6 +33,7 @@ export default function ServiceRequestForm() {
       body: JSON.stringify({ ...form, area: form.area === "Other" ? (form.areaOther.trim() || "Other") : form.area }),
     });
     if (res.ok) {
+      trackLead("form");
       setStatus("done");
     } else {
       const d = await res.json().catch(() => ({}));

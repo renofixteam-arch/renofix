@@ -3,6 +3,7 @@ import { SITE } from "../lib/site";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import Analytics from "./components/Analytics";
 
 export const metadata = {
   metadataBase: new URL(SITE.url),
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <FloatingWhatsApp />
+        <Analytics />
       </body>
     </html>
   );
