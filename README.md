@@ -204,3 +204,12 @@ the cost calculator, and appears in the sitemap. Add new guides by appending to 
   and request-form submission — as gtag "generate_lead" events.
 - To count these as Google Ads conversions, create a conversion action in Google Ads and put
   its label in SITE.gads.leadLabel (lib/site.js). The "conversion" event then also fires.
+
+---
+
+## Cost-calculator conversion boost — added in v22
+
+The /cost-calculator page (the Google Ads landing page) now shows a trust bar above the wizard
+(Licensed · Free site visit · Fixed transparent pricing · Workmanship warranty) and a prominent
+"Chat with us on WhatsApp" fallback below it, for visitors who prefer to talk rather than fill
+the form. Aimed at converting ad clicks into leads while the site has no reviews yet.
