@@ -6,6 +6,7 @@ import {
 import EstimateWizard from "./components/EstimateWizard";
 import RecentWork from "./components/RecentWork";
 import ServiceCards from "./components/ServiceCards";
+import Reviews from "./components/Reviews";
 import SlotBackground from "./components/SlotBackground";
 import { SITE } from "../lib/site";
 import { SERVICES, AREAS } from "../lib/renofix-data";
@@ -134,6 +135,8 @@ export default function HomePage() {
       </section>
 
       <RecentWork />
+
+      <Reviews />
 
       {/* ---------- WHY US ---------- */}
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">

@@ -213,3 +213,16 @@ The /cost-calculator page (the Google Ads landing page) now shows a trust bar ab
 (Licensed · Free site visit · Fixed transparent pricing · Workmanship warranty) and a prominent
 "Chat with us on WhatsApp" fallback below it, for visitors who prefer to talk rather than fill
 the form. Aimed at converting ad clicks into leads while the site has no reviews yet.
+
+---
+
+## Customer reviews — added in v23
+
+- New reviews system: /admin/reviews to add and manage customer reviews (name, rating, text,
+  area, service, source). Reviews show on the homepage (after Recent Work) as a rating section
+  with star cards, and emit AggregateRating + Review schema (can produce star ratings in Google
+  search results).
+- One-time DB step: run SUPABASE_SETUP_4.sql once (adds the public.reviews table, publicly
+  readable so the site can display them).
+- Paste your Google review link into lib/site.js (googleReviewUrl) to turn on the
+  "Leave us a review" button. Admin nav now: Rates · Site Images · Gallery · Leads · Reviews · SEO.
