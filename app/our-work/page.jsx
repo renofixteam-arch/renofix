@@ -1,46 +1,41 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
 import { getSupabase } from "../../lib/supabase";
+import { SITE } from "../../lib/site";
+import OurWorkGallery from "../components/OurWorkGallery";
 
-const CATEGORIES = [
-  "All",
-  "Apartment",
-  "Villa",
-  "Bathroom",
-  "Kitchen",
-  "MEP",
-  "Swimming Pool",
-  "Landscaping",
-  "Other",
-];
+export const metadata = {
+  title: "Our Renovation Projects in Dubai",
+  description:
+    "Real apartment, villa, bathroom, kitchen, MEP, landscaping and swimming pool projects delivered across Dubai by RenoFix — see the finished work and the standard we deliver.",
+  alternates: { canonical: `${SITE.url}/our-work` },
+  openGraph: {
+    type: "website",
+    locale: "en_AE",
+    url: `${SITE.url}/our-work`,
+    title: "Our Renovation Projects in Dubai | RenoFix",
+    description:
+      "Real renovation, MEP, landscaping and pool projects delivered across Dubai by RenoFix.",
+  },
+};
 
-export default function OurWorkPage() {
-  const [projects, setProjects] = useState([]);
-  const [active, setActive] = useState("All");
-  const [loading, setLoading] = useState(true);
+// Rebuild the page hourly so newly added /admin projects appear and are
+// server-rendered into the HTML (crawlable by Google), unlike the previous
+// client-only fetch which showed search engines an empty page.
+export const revalidate = 3600;
 
-  useEffect(() => {
-    async function load() {
-      const supabase = getSupabase();
-      if (!supabase) {
-        setLoading(false);
-        return;
-      }
+export default async function OurWorkPage() {
+  let projects = [];
+  try {
+    const supabase = getSupabase();
+    if (supabase) {
       const { data } = await supabase
         .from("projects")
         .select("id,title,category,image_url")
         .order("created_at", { ascending: false });
-      setProjects(data || []);
-      setLoading(false);
+      projects = data || [];
     }
-    load();
-  }, []);
-
-  const filtered = useMemo(() => {
-    if (active === "All") return projects;
-    return projects.filter((p) => p.category === active);
-  }, [projects, active]);
+  } catch {
+    projects = [];
+  }
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -50,46 +45,7 @@ export default function OurWorkPage() {
         across Dubai.
       </p>
 
-      <div className="mt-6 flex flex-wrap gap-2">
-        {CATEGORIES.map((c) => (
-          <button
-            key={c}
-            type="button"
-            onClick={() => setActive(c)}
-            className={
-              "rounded-lg border px-3 py-1.5 text-sm transition " +
-              (active === c
-                ? "border-amber-500 bg-amber-500/10 text-amber-700 dark:text-amber-300"
-                : "border-slate-300 hover:border-slate-400 dark:border-slate-700")
-            }
-          >
-            {c}
-          </button>
-        ))}
-      </div>
-
-      {loading ? (
-        <p className="mt-10 text-sm text-slate-500">Loading projects...</p>
-      ) : filtered.length === 0 ? (
-        <p className="mt-10 text-sm text-slate-500">
-          No projects to show yet. Check back soon.
-        </p>
-      ) : (
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p) => (
-            <div
-              key={p.id}
-              className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
-            >
-              <img src={p.image_url} alt={p.title} className="h-52 w-full object-cover" />
-              <div className="p-4">
-                <p className="text-sm font-semibold">{p.title}</p>
-                <p className="text-xs text-slate-500">{p.category}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      <OurWorkGallery projects={projects} />
     </main>
   );
 }

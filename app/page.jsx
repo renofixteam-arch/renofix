@@ -234,7 +234,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
-          {GUIDES.slice(0, 3).map((g) => (
+          {GUIDES.slice(0, 6).map((g) => (
             <Link key={g.slug} href={`/guides/${g.slug}`} className="group rounded-2xl border border-slate-200 p-6 transition hover:border-amber-400 dark:border-slate-800">
               <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{g.readTime}</p>
               <h3 className="mt-2 font-display text-base font-semibold leading-snug">{g.title}</h3>
