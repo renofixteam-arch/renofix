@@ -144,6 +144,18 @@ export default function ServicePage({ params }) {
         </section>
       )}
 
+      {service.slug === "mep-works" && (
+        <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+          <Link href="/subcontracting" className="group flex items-center justify-between gap-4 rounded-2xl border border-slate-200 p-5 transition hover:border-amber-400 dark:border-slate-800">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">For contractors &amp; developers</p>
+              <p className="mt-1 font-display text-base font-semibold">MEP &amp; fit-out subcontracting in Dubai</p>
+            </div>
+            <span className="whitespace-nowrap text-sm font-semibold text-amber-600 dark:text-amber-400">Learn more &rarr;</span>
+          </Link>
+        </section>
+      )}
+
       <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{service.name} FAQs</h2>
         <div className="mt-6 space-y-4">
