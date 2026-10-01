@@ -9,7 +9,7 @@ export const metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: "RenoFix — Renovation, MEP & Maintenance Company in Dubai",
-    template: "%s | RenoFix Dubai",
+    template: "%s | RenoFix",
   },
   description:
     "RenoFix delivers apartment, villa, bathroom & kitchen renovation, MEP works, home maintenance, landscaping and swimming pool construction across Dubai. Get an instant estimate.",
