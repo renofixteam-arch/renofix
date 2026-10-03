@@ -21,7 +21,7 @@ export function GET() {
     `- Location: ${SITE.city}, United Arab Emirates`,
     "- Serves: homeowners, landlords, property managers, main contractors, fit-out companies and developers",
     "- Projects: residential (apartments, villas, townhouses) and commercial (offices, retail, F&B)",
-    "- Pricing: fixed, transparent, itemised quotes; instant online estimate available",
+    "- Pricing: fixed, transparent, itemised quotes; renovation packages from AED 35,000; instant online estimate available",
     "- Warranty: 12-month workmanship warranty (terms and conditions apply)",
     "- Approvals: prepares building NOC documents and supports DEWA and authority submissions",
     `- Phone / WhatsApp: ${SITE.phone}`,
