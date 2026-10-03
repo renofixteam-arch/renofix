@@ -17,6 +17,7 @@ Stack: Next.js (App Router) + Supabase, hosted on Vercel. Every push to `main` a
 
 - **Brand name is "RenoFix Plus"** in all client-facing copy (`SITE.name` in `lib/site.js`).
 - **Warranty is 12 months, terms and conditions apply.** Any warranty claim must carry the condition (or an asterisk pointing to the footer note).
+- **Renovation packages start from AED 35,000.** Price ranges in copy must match the price tables in `lib/guides.js`; don't invent numbers.
 - **Positioning is honest, fixed, transparent pricing — not luxury.** Don't use "luxury" or similar upmarket framing in copy. Describing a finish level (e.g. "premium finishes" as a price tier) is fine.
 - **Never put the DED licence number in promotional or public content.** It stays in `lib/site.js` for legal/docs use only; don't render it on pages, metadata or structured data.
 - **Client-facing copy is English only.**
