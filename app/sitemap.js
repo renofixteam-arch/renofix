@@ -15,6 +15,7 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.7,
     })),
+    { url: `${SITE.url}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
     { url: `${SITE.url}/subcontracting`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE.url}/our-work`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE.url}/request`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },

@@ -41,7 +41,9 @@ export const metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
+  "@id": `${SITE.url}/#business`,
   name: SITE.name,
+  alternateName: ["RenoFix Dubai", "RenoFix Plus", "renofixplus"],
   description:
     "Renovation, MEP, maintenance, landscaping and swimming pool construction company in Dubai.",
   url: SITE.url,

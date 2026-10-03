@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 
 export function GET() {
   const lines = [
-    `# ${SITE.name}`,
+    `# ${SITE.name} (renofixplus.ae)`,
     "",
     `> ${SITE.name} is a licensed renovation, MEP and maintenance contractor in Dubai, UAE. ` +
       "We renovate apartments and villas, rebuild bathrooms and kitchens, carry out MEP works, and work as a " +
@@ -42,6 +42,7 @@ export function GET() {
     "",
     "## Tools",
     "",
+    `- [About RenoFix](${SITE.url}/about): who we are and how we work`,
     `- [Renovation cost calculator](${SITE.url}/cost-calculator): instant estimate for a Dubai renovation`,
     `- [Our work](${SITE.url}/our-work): completed projects`,
     `- [Request a service](${SITE.url}/request)`,

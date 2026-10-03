@@ -37,6 +37,11 @@ export default function Footer() {
               </li>
             ))}
             <li>
+              <Link href="/about" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
+                About RenoFix
+              </Link>
+            </li>
+            <li>
               <Link href="/subcontracting" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
                 Subcontracting
               </Link>
