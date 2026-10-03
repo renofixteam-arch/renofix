@@ -10,7 +10,7 @@ export const metadata = {
   title: { absolute: "About RenoFix — Renovation & MEP Contractor in Dubai" },
   description,
   alternates: { canonical },
-  openGraph: { type: "website", locale: "en_AE", url: canonical, title: "About RenoFix | Renovation & MEP Contractor in Dubai", description },
+  openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: "About RenoFix | Renovation & MEP Contractor in Dubai", description },
 };
 
 const FACTS = [

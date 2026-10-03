@@ -52,7 +52,8 @@ const localBusinessSchema = {
   areaServed: { "@type": "City", name: "Dubai" },
   address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
   priceRange: "$$",
-  image: `${SITE.url}/og.png`,
+  image: `${SITE.url}/opengraph-image`,
+  logo: `${SITE.url}/icon`,
   sameAs: [`https://instagram.com/${SITE.instagram}`],
   knowsAbout: [
     "Apartment renovation",

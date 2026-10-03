@@ -18,6 +18,7 @@ export function generateMetadata({ params }) {
     description: guide.description,
     alternates: { canonical },
     openGraph: {
+      images: [SITE.ogImage],
       type: "article",
       locale: "en_AE",
       url: canonical,

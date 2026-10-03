@@ -9,6 +9,7 @@ export const metadata = {
     "Practical guides on renovation costs, approvals and planning in Dubai — written by a working Dubai contractor. No sales pitch, just what you need to budget properly.",
   alternates: { canonical: `${SITE.url}/guides` },
   openGraph: {
+    images: [SITE.ogImage],
     type: "website",
     locale: "en_AE",
     url: `${SITE.url}/guides`,

@@ -20,7 +20,7 @@ export function generateMetadata({ params }) {
     title,
     description,
     alternates: { canonical },
-    openGraph: { type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix`, description },
+    openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix`, description },
   };
 }
 

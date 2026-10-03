@@ -8,6 +8,7 @@ export const metadata = {
     "Real apartment, villa, bathroom, kitchen, MEP, landscaping and swimming pool projects delivered across Dubai by RenoFix — see the finished work and the standard we deliver.",
   alternates: { canonical: `${SITE.url}/our-work` },
   openGraph: {
+    images: [SITE.ogImage],
     type: "website",
     locale: "en_AE",
     url: `${SITE.url}/our-work`,
