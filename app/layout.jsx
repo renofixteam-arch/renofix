@@ -43,7 +43,8 @@ const localBusinessSchema = {
   "@type": "HomeAndConstructionBusiness",
   "@id": `${SITE.url}/#business`,
   name: SITE.name,
-  alternateName: ["RenoFix Dubai", "RenoFix Plus", "renofixplus"],
+  legalName: "Renofix Plus Technical Contracting LLC",
+  alternateName: ["RenoFix Dubai", "RenoFix Plus", "Renofix Plus Contracting", "renofixplus"],
   description:
     "Renovation, MEP, maintenance, landscaping and swimming pool construction company in Dubai.",
   url: SITE.url,
