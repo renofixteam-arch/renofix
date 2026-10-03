@@ -22,7 +22,7 @@ export function GET() {
     "- Serves: homeowners, landlords, property managers, main contractors, fit-out companies and developers",
     "- Projects: residential (apartments, villas, townhouses) and commercial (offices, retail, F&B)",
     "- Pricing: fixed, transparent, itemised quotes; renovation packages from AED 35,000; instant online estimate available",
-    "- Warranty: 12-month workmanship warranty (terms and conditions apply)",
+    `- Warranty: 12-month workmanship warranty (terms and conditions apply: ${SITE.url}/warranty)`,
     "- Approvals: prepares building NOC documents and supports DEWA and authority submissions",
     `- Phone / WhatsApp: ${SITE.phone}`,
     `- Email: ${SITE.email}`,
