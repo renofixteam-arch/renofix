@@ -1,5 +1,6 @@
 import "./globals.css";
 import { SITE } from "../lib/site";
+import { SERVICES } from "../lib/renofix-data";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -51,16 +52,29 @@ const localBusinessSchema = {
   priceRange: "$$",
   image: `${SITE.url}/og.png`,
   sameAs: [`https://instagram.com/${SITE.instagram}`],
-  makesOffer: [
-    "Apartment Renovation",
-    "Villa Renovation",
-    "Bathroom Renovation",
-    "Kitchen Renovation",
-    "MEP Works",
-    "Home Maintenance",
-    "Landscaping",
-    "Swimming Pool Construction",
+  knowsAbout: [
+    "Apartment renovation",
+    "Villa renovation",
+    "Bathroom renovation",
+    "Kitchen renovation",
+    "MEP works",
+    "Interior fit-out subcontracting",
+    "Renovation NOC and approvals in Dubai",
   ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Renovation and MEP services in Dubai",
+    itemListElement: [
+      ...SERVICES.map((s) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: s.name, url: `${SITE.url}/${s.slug}` },
+      })),
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "MEP & Interior Fit-Out Subcontracting", url: `${SITE.url}/subcontracting` },
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
