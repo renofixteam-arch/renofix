@@ -22,7 +22,9 @@ export default function Footer() {
             Licensed contractor in Dubai
           </p>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-500">
-            * Warranty terms and conditions apply.
+            * Warranty{" "}
+            <Link href="/warranty" className="underline hover:text-amber-600 dark:hover:text-amber-400">terms and conditions</Link>{" "}
+            apply.
           </p>
         </div>
 
