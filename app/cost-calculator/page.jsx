@@ -13,12 +13,12 @@ const TRUST = [
   { Icon: BadgeCheck, label: "Licensed contractor" },
   { Icon: CalendarClock, label: "Free site visit" },
   { Icon: ReceiptText, label: "Fixed transparent pricing" },
-  { Icon: ShieldCheck, label: "Workmanship warranty" },
+  { Icon: ShieldCheck, label: "12-month warranty (T&Cs apply)" },
 ];
 
 export default function CostCalculatorPage() {
   const waHref = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
-    "Hi RenoFix, I'd like to discuss my renovation project and get a quote."
+    "Hi RenoFix Plus, I'd like to discuss my renovation project and get a quote."
   )}`;
 
   return (

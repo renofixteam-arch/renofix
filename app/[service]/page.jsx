@@ -14,13 +14,13 @@ export function generateMetadata({ params }) {
   const service = getService(params.service);
   if (!service) return {};
   const title = `${service.name} in Dubai`;
-  const description = `Professional ${service.short} in Dubai by RenoFix. Fixed pricing, licensed teams and a workmanship warranty. Get an instant estimate online.`;
+  const description = `Professional ${service.short} in Dubai by RenoFix Plus. Fixed pricing, licensed teams and a 12-month workmanship warranty (T&Cs apply). Get an instant estimate online.`;
   const canonical = `${SITE.url}/${service.slug}`;
   return {
     title,
     description,
     alternates: { canonical },
-    openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix`, description },
+    openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix Plus`, description },
   };
 }
 

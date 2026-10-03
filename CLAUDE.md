@@ -1,6 +1,6 @@
-# RenoFix
+# RenoFix Plus
 
-Website for RenoFix, a renovation company in Dubai. Live at https://renofixplus.ae.
+Website for RenoFix Plus (legal name: Renofix Plus Technical Contracting LLC), a renovation company in Dubai. Live at https://renofixplus.ae.
 
 Stack: Next.js (App Router) + Supabase, hosted on Vercel. Every push to `main` auto-deploys to production.
 
@@ -15,6 +15,8 @@ Stack: Next.js (App Router) + Supabase, hosted on Vercel. Every push to `main` a
 
 ## Guardrails
 
+- **Brand name is "RenoFix Plus"** in all client-facing copy (`SITE.name` in `lib/site.js`).
+- **Warranty is 12 months, terms and conditions apply.** Any warranty claim must carry the condition (or an asterisk pointing to the footer note).
 - **Positioning is honest, fixed, transparent pricing — not luxury.** Don't use "luxury" or similar upmarket framing in copy. Describing a finish level (e.g. "premium finishes" as a price tier) is fine.
 - **Never put the DED licence number in promotional or public content.** It stays in `lib/site.js` for legal/docs use only; don't render it on pages, metadata or structured data.
 - **Client-facing copy is English only.**

@@ -4,13 +4,13 @@ import { SITE } from "../../lib/site";
 const canonical = `${SITE.url}/subcontracting`;
 const title = "MEP & Interior Fit-Out Subcontractor in Dubai";
 const description =
-  "RenoFix works as a supply-and-install subcontractor for main contractors, fit-out companies, developers and property managers in Dubai — MEP, ceilings, partitions, flooring, painting and joinery for residential and commercial projects.";
+  "RenoFix Plus works as a supply-and-install subcontractor for main contractors, fit-out companies, developers and property managers in Dubai — MEP, ceilings, partitions, flooring, painting and joinery for residential and commercial projects.";
 
 export const metadata = {
   title,
   description,
   alternates: { canonical },
-  openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix`, description },
+  openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix Plus`, description },
 };
 
 const WHO = [
@@ -64,7 +64,7 @@ const FAQS = [
 ];
 
 export default function SubcontractingPage() {
-  const waText = encodeURIComponent("Hi RenoFix, I'd like a subcontract quote for a project in Dubai.");
+  const waText = encodeURIComponent("Hi RenoFix Plus, I'd like a subcontract quote for a project in Dubai.");
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -115,7 +115,7 @@ export default function SubcontractingPage() {
           MEP &amp; Interior Fit-Out Subcontractor in Dubai
         </h1>
         <p className="mt-4 max-w-2xl text-base text-slate-600 sm:text-lg dark:text-slate-400">
-          RenoFix takes on MEP and finishing packages as a supply-and-install subcontractor for residential and
+          RenoFix Plus takes on MEP and finishing packages as a supply-and-install subcontractor for residential and
           commercial projects. Itemised pricing from your BOQ, a supervised team on site, and no surprises on the final account.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">

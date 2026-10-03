@@ -8,10 +8,10 @@ import { SERVICES } from "../../lib/renofix-data";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const navServices = SERVICES.slice(0, 3);
+  const navServices = SERVICES.slice(0, 2);
 
   const link =
-    "whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white";
+    "whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white";
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
@@ -20,16 +20,16 @@ export default function Header() {
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500 font-display text-lg font-bold text-slate-900">
             R
           </span>
-          <span className="font-display text-lg font-bold tracking-tight">RenoFix</span>
+          <span className="font-display text-lg font-bold tracking-tight">RenoFix Plus</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:ml-4 lg:flex">
+        <nav className="hidden items-center xl:ml-2 xl:flex">
           {navServices.map((s) => (
             <Link key={s.slug} href={`/${s.slug}`} className={link}>
               {s.name}
             </Link>
           ))}
-          <Link href="/cost-calculator" className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-amber-600 transition-colors hover:bg-amber-500/10 dark:text-amber-400">
+          <Link href="/cost-calculator" className="whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold text-amber-600 transition-colors hover:bg-amber-500/10 dark:text-amber-400">
             Cost Calculator
           </Link>
           <Link href="/guides" className={link}>
@@ -59,7 +59,7 @@ export default function Header() {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 transition-colors hover:bg-slate-100 lg:hidden dark:border-slate-800 dark:hover:bg-slate-800"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 transition-colors hover:bg-slate-100 xl:hidden dark:border-slate-800 dark:hover:bg-slate-800"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -67,7 +67,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-slate-200 bg-white px-4 py-3 lg:hidden dark:border-slate-800 dark:bg-slate-950">
+        <div className="border-t border-slate-200 bg-white px-4 py-3 xl:hidden dark:border-slate-800 dark:bg-slate-950">
           <div className="flex flex-col gap-1">
             {SERVICES.map((s) => (
               <Link

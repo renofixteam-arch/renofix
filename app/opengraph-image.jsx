@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 // Default social share image (WhatsApp, LinkedIn, Facebook previews).
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "RenoFix — Renovation, MEP & Maintenance Company in Dubai";
+export const alt = "RenoFix Plus — Renovation, MEP & Maintenance Company in Dubai";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -37,7 +37,7 @@ export default function OpengraphImage() {
           >
             R
           </div>
-          <div style={{ marginLeft: 28, fontSize: 56, fontWeight: 700 }}>RenoFix</div>
+          <div style={{ marginLeft: 28, fontSize: 56, fontWeight: 700 }}>RenoFix Plus</div>
         </div>
         <div style={{ marginTop: 56, fontSize: 64, fontWeight: 700, lineHeight: 1.15 }}>
           Renovation, MEP &amp; Maintenance in Dubai

@@ -14,7 +14,7 @@ export default function AdminLayout({ children }) {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4 dark:border-slate-800">
         <div className="flex items-center gap-5">
-          <span className="text-lg font-bold">RenoFix Admin</span>
+          <span className="text-lg font-bold">RenoFix Plus Admin</span>
           <nav className="flex gap-4 text-sm">
             <Link href="/admin/rates" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
               Rates

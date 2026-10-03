@@ -22,7 +22,7 @@ export function generateMetadata({ params }) {
       type: "article",
       locale: "en_AE",
       url: canonical,
-      title: `${guide.metaTitle} | RenoFix`,
+      title: `${guide.metaTitle} | RenoFix Plus`,
       description: guide.description,
     },
   };

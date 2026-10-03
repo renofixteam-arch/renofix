@@ -82,7 +82,7 @@ export default function EstimateTool({ defaultService = "apartment", areaName = 
 
   const waHref = useMemo(() => {
     const loc = areaName ? ` in ${areaName}` : "";
-    const base = `Hi RenoFix, I'd like a quote for ${service.label}${loc} (${tier.label} finish).`;
+    const base = `Hi RenoFix Plus, I'd like a quote for ${service.label}${loc} (${tier.label} finish).`;
     const detail = estimate
       ? ` My estimated range is ${formatAED(estimate.low)} - ${formatAED(estimate.high)}. Please arrange a site visit.`
       : " Please arrange a site visit.";

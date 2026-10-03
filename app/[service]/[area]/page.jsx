@@ -14,13 +14,13 @@ export function generateMetadata({ params }) {
   const area = getArea(params.area);
   if (!service || !area) return {};
   const title = `${service.name} in ${area.name}, Dubai`;
-  const description = `Looking for ${service.short} in ${area.name}? RenoFix delivers professional ${service.short} with fixed pricing, licensed teams and a workmanship warranty. Get an instant estimate.`;
+  const description = `Looking for ${service.short} in ${area.name}? RenoFix Plus delivers professional ${service.short} with fixed pricing, licensed teams and a 12-month workmanship warranty (T&Cs apply). Get an instant estimate.`;
   const canonical = `${SITE.url}/${service.slug}/${area.slug}`;
   return {
     title,
     description,
     alternates: { canonical },
-    openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix`, description },
+    openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: `${title} | RenoFix Plus`, description },
   };
 }
 
@@ -84,7 +84,7 @@ export default function ServiceAreaPage({ params }) {
             </span>
             <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">{h1}</h1>
             <p className="mt-4 max-w-lg text-base text-slate-600 sm:text-lg dark:text-slate-400">
-              {service.intro} RenoFix serves {area.name} and all surrounding Dubai communities with licensed teams and fixed, transparent pricing.
+              {service.intro} RenoFix Plus serves {area.name} and all surrounding Dubai communities with licensed teams and fixed, transparent pricing.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#estimate" className="flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
@@ -117,7 +117,7 @@ export default function ServiceAreaPage({ params }) {
 
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 lg:grid-cols-4">
-          {[["Licensed", "Fully licensed in Dubai"], ["Local team", `Serving ${area.name}`], ["Fixed pricing", "No hidden costs"], ["Warranty", "Workmanship guaranteed"]].map(([k, v]) => (
+          {[["Licensed", "Fully licensed in Dubai"], ["Local team", `Serving ${area.name}`], ["Fixed pricing", "No hidden costs"], ["Warranty", "12 months, T&Cs apply"]].map(([k, v]) => (
             <div key={k}>
               <p className="text-sm font-bold">{k}</p>
               <p className="text-xs text-slate-600 dark:text-slate-400">{v}</p>
@@ -168,7 +168,7 @@ export default function ServiceAreaPage({ params }) {
           <h2 className="text-2xl font-bold text-white sm:text-3xl">Get your {service.short} quote in {area.name}</h2>
           <p className="mx-auto mt-2 max-w-xl text-slate-300">Free site visit and a clear, fixed-price quotation.</p>
           <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center justify-center rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-amber-400">
-            Talk to RenoFix on WhatsApp
+            Talk to RenoFix Plus on WhatsApp
           </a>
         </div>
       </section>

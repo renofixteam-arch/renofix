@@ -4,17 +4,17 @@ import { SERVICES } from "../../lib/renofix-data";
 
 const canonical = `${SITE.url}/about`;
 const description =
-  "RenoFix (renofixplus.ae) is a licensed renovation, MEP and maintenance contractor in Dubai. Fixed, itemised pricing for homeowners, landlords, contractors and developers.";
+  "RenoFix Plus (renofixplus.ae) is a licensed renovation, MEP and maintenance contractor in Dubai. Fixed, itemised pricing for homeowners, landlords, contractors and developers.";
 
 export const metadata = {
-  title: { absolute: "About RenoFix — Renovation & MEP Contractor in Dubai" },
+  title: { absolute: "About RenoFix Plus — Renovation & MEP Contractor in Dubai" },
   description,
   alternates: { canonical },
-  openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: "About RenoFix | Renovation & MEP Contractor in Dubai", description },
+  openGraph: { images: [SITE.ogImage], type: "website", locale: "en_AE", url: canonical, title: "About RenoFix Plus | Renovation & MEP Contractor in Dubai", description },
 };
 
 const FACTS = [
-  ["Company", "RenoFix"],
+  ["Company", "RenoFix Plus"],
   ["Website", "renofixplus.ae"],
   ["What we do", "Renovation, MEP works, maintenance and fit-out subcontracting"],
   ["Where", "Dubai, United Arab Emirates — all communities"],
@@ -39,7 +39,7 @@ const PRINCIPLES = [
   },
   {
     title: "Work we stand behind",
-    body: "Our workmanship is covered by a written warranty, and our trade licence and insurance documents are available on request.",
+    body: "Our workmanship is covered by a written 12-month warranty (terms and conditions apply), and our trade licence and insurance documents are available on request.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     url: canonical,
-    name: "About RenoFix",
+    name: "About RenoFix Plus",
     description,
     about: { "@id": `${SITE.url}/#business` },
   };
@@ -62,10 +62,10 @@ export default function AboutPage() {
           About us
         </span>
         <h1 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          RenoFix — renovation and MEP contractor in Dubai
+          RenoFix Plus — renovation and MEP contractor in Dubai
         </h1>
         <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-400">
-          RenoFix is a licensed renovation, MEP and maintenance contractor based in Dubai, online at{" "}
+          RenoFix Plus is a licensed renovation, MEP and maintenance contractor based in Dubai, online at{" "}
           <Link href="/" className="font-semibold text-amber-600 hover:underline dark:text-amber-400">renofixplus.ae</Link>.
           We renovate apartments and villas, rebuild bathrooms and kitchens, carry out MEP works, and take on
           supply-and-install packages as a subcontractor for contractors and developers.
@@ -78,7 +78,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-        <h2 className="font-display text-2xl font-bold tracking-tight">RenoFix at a glance</h2>
+        <h2 className="font-display text-2xl font-bold tracking-tight">RenoFix Plus at a glance</h2>
         <dl className="mt-5 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
           {FACTS.map(([k, v]) => (
             <div key={k} className="grid gap-1 px-5 py-3.5 sm:grid-cols-3 sm:gap-4">

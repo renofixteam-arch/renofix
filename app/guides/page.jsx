@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
     locale: "en_AE",
     url: `${SITE.url}/guides`,
-    title: "Renovation Guides for Dubai Homeowners | RenoFix",
+    title: "Renovation Guides for Dubai Homeowners | RenoFix Plus",
     description:
       "Practical guides on renovation costs, approvals and planning in Dubai.",
   },

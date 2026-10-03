@@ -4,7 +4,7 @@ import { SITE } from "../../lib/site";
 export const metadata = {
   title: "Request a Service in Dubai",
   description:
-    "Request apartment, villa, bathroom or kitchen renovation, MEP, landscaping or pool works from RenoFix Dubai. Free site visit and fixed-price quote.",
+    "Request apartment, villa, bathroom or kitchen renovation, MEP, landscaping or pool works from RenoFix Plus. Free site visit and fixed-price quote.",
   alternates: { canonical: `${SITE.url}/request` },
 };
 

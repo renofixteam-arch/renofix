@@ -12,14 +12,17 @@ export default function Footer() {
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500 font-display text-lg font-bold text-slate-900">
               R
             </span>
-            <span className="font-display text-lg font-bold">RenoFix</span>
+            <span className="font-display text-lg font-bold">RenoFix Plus</span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-600 dark:text-slate-400">
             Renovation, MEP, maintenance, landscaping and swimming pools across Dubai.
-            Fixed pricing, licensed teams, warranty-backed work.
+            Fixed pricing, licensed teams and a 12-month workmanship warranty*.
           </p>
           <p className="mt-4 text-xs text-slate-500 dark:text-slate-500">
             Licensed contractor in Dubai
+          </p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-500">
+            * Warranty terms and conditions apply.
           </p>
         </div>
 
@@ -38,7 +41,7 @@ export default function Footer() {
             ))}
             <li>
               <Link href="/about" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
-                About RenoFix
+                About RenoFix Plus
               </Link>
             </li>
             <li>
@@ -99,7 +102,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-200 py-5 text-center text-xs text-slate-500 dark:border-slate-800">
-        © {new Date().getFullYear()} RenoFix. All rights reserved. ·{" "}
+        © {new Date().getFullYear()} RenoFix Plus. All rights reserved. ·{" "}
         <Link href="/privacy" className="hover:text-amber-600 dark:hover:text-amber-400">Privacy Policy</Link>
       </div>
     </footer>

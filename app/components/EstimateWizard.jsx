@@ -135,7 +135,7 @@ export default function EstimateWizard() {
 
   const waHref = useMemo(() => {
     const range = estimate ? ` My estimate is ${formatAED(estimate.low)} - ${formatAED(estimate.high)}.` : "";
-    return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hi RenoFix, I used the cost calculator.${range} Please arrange a free site visit.`)}`;
+    return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hi RenoFix Plus, I used the cost calculator.${range} Please arrange a free site visit.`)}`;
   }, [estimate]);
 
   const field =

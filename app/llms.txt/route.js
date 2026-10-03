@@ -14,7 +14,7 @@ export function GET() {
     `> ${SITE.name} is a licensed renovation, MEP and maintenance contractor in Dubai, UAE. ` +
       "We renovate apartments and villas, rebuild bathrooms and kitchens, carry out MEP works, and work as a " +
       "supply-and-install subcontractor for main contractors and fit-out companies. " +
-      "We quote fixed, itemised prices up front and back our work with a workmanship warranty.",
+      "We quote fixed, itemised prices up front and back our work with a 12-month workmanship warranty (terms and conditions apply).",
     "",
     "## Key facts",
     "",
@@ -22,6 +22,7 @@ export function GET() {
     "- Serves: homeowners, landlords, property managers, main contractors, fit-out companies and developers",
     "- Projects: residential (apartments, villas, townhouses) and commercial (offices, retail, F&B)",
     "- Pricing: fixed, transparent, itemised quotes; instant online estimate available",
+    "- Warranty: 12-month workmanship warranty (terms and conditions apply)",
     "- Approvals: prepares building NOC documents and supports DEWA and authority submissions",
     `- Phone / WhatsApp: ${SITE.phone}`,
     `- Email: ${SITE.email}`,
@@ -42,7 +43,7 @@ export function GET() {
     "",
     "## Tools",
     "",
-    `- [About RenoFix](${SITE.url}/about): who we are and how we work`,
+    `- [About RenoFix Plus](${SITE.url}/about): who we are and how we work`,
     `- [Renovation cost calculator](${SITE.url}/cost-calculator): instant estimate for a Dubai renovation`,
     `- [Our work](${SITE.url}/our-work): completed projects`,
     `- [Request a service](${SITE.url}/request)`,

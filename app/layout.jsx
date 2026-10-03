@@ -9,11 +9,11 @@ import Analytics from "./components/Analytics";
 export const metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "RenoFix — Renovation, MEP & Maintenance Company in Dubai",
-    template: "%s | RenoFix",
+    default: "RenoFix Plus — Renovation, MEP & Maintenance Company in Dubai",
+    template: "%s | RenoFix Plus",
   },
   description:
-    "RenoFix delivers apartment, villa, bathroom & kitchen renovation, MEP works, home maintenance, landscaping and swimming pool construction across Dubai. Get an instant estimate.",
+    "RenoFix Plus delivers apartment, villa, bathroom & kitchen renovation, MEP works, home maintenance, landscaping and swimming pool construction across Dubai. Get an instant estimate.",
   keywords: [
     "renovation company Dubai",
     "apartment renovation Dubai",
@@ -29,8 +29,8 @@ export const metadata = {
     type: "website",
     locale: "en_AE",
     url: SITE.url,
-    siteName: "RenoFix Dubai",
-    title: "RenoFix — Renovation, MEP & Maintenance Company in Dubai",
+    siteName: "RenoFix Plus",
+    title: "RenoFix Plus — Renovation, MEP & Maintenance Company in Dubai",
     description:
       "Apartment, villa, bathroom & kitchen renovation, MEP, maintenance, landscaping and pools across Dubai. Instant estimate online.",
   },
@@ -44,7 +44,7 @@ const localBusinessSchema = {
   "@id": `${SITE.url}/#business`,
   name: SITE.name,
   legalName: "Renofix Plus Technical Contracting LLC",
-  alternateName: ["RenoFix Dubai", "RenoFix Plus", "Renofix Plus Contracting", "renofixplus"],
+  alternateName: ["RenoFix", "RenoFix Dubai", "Renofix Plus Contracting", "renofixplus"],
   description:
     "Renovation, MEP, maintenance, landscaping and swimming pool construction company in Dubai.",
   url: SITE.url,

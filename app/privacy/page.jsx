@@ -2,7 +2,7 @@ import { SITE } from "../../lib/site";
 
 export const metadata = {
   title: "Privacy Policy",
-  description: "How RenoFix collects and uses the information you share through our website.",
+  description: "How RenoFix Plus collects and uses the information you share through our website.",
   alternates: { canonical: `${SITE.url}/privacy` },
   robots: { index: true, follow: true },
 };
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
 
       <div className="mt-8 space-y-6 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
         <p>
-          This policy explains how RenoFix handles the information you share with us through this
+          This policy explains how RenoFix Plus handles the information you share with us through this
           website. We keep it simple and only collect what we need to help you.
         </p>
 

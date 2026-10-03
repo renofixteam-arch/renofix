@@ -15,14 +15,14 @@ import { GUIDES } from "../lib/guides";
 const VALUES = [
   { icon: BadgeCheck, title: "Licensed & accountable", body: `Fully licensed contractor. One team owns your project end to end.` },
   { icon: ReceiptText, title: "Fixed, transparent pricing", body: "A clear BOQ before we start. No hidden costs, no surprises mid-project." },
-  { icon: ShieldCheck, title: "Workmanship warranty", body: "We stand behind the work — especially the parts you can't see, like waterproofing." },
+  { icon: ShieldCheck, title: "12-month workmanship warranty", body: "We stand behind the work — especially the parts you can't see, like waterproofing. Terms and conditions apply." },
   { icon: CalendarClock, title: "On-time delivery", body: "A committed timeline shared upfront, with communication at every stage." },
 ];
 
 const STEPS = [
   { icon: Calculator, title: "Get an instant estimate", body: "Use the tool to get a ballpark price in seconds — pick a service, add your size, done." },
   { icon: ClipboardCheck, title: "Free site visit & fixed quote", body: "We visit, measure, and send a detailed fixed-price quotation you can rely on." },
-  { icon: Hammer, title: "We build, you relax", body: "Licensed teams handle everything to Dubai standards, backed by our warranty." },
+  { icon: Hammer, title: "We build, you relax", body: "Licensed teams handle everything to Dubai standards, backed by our 12-month warranty (T&Cs apply)." },
 ];
 
 function serviceHref(area) {
@@ -102,7 +102,7 @@ export default function HomePage() {
                   <ReceiptText size={16} className="text-amber-500" /> Fixed pricing
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <ShieldCheck size={16} className="text-amber-500" /> Warranty
+                  <ShieldCheck size={16} className="text-amber-500" /> 12-month warranty*
                 </span>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function HomePage() {
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
           <p className="tick font-display text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">
-            Why RenoFix
+            Why RenoFix Plus
           </p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
             The boring stuff, done properly
