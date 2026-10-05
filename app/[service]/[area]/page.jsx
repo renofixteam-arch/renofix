@@ -3,7 +3,8 @@ import Link from "next/link";
 import EstimateWizard from "../../components/EstimateWizard";
 import SlotBackground from "../../components/SlotBackground";
 import { SITE } from "../../../lib/site";
-import { SERVICES, AREAS, getService, getArea, allServiceAreaParams } from "../../../lib/renofix-data";
+import { SERVICES, AREAS, getService, getArea, allServiceAreaParams, areaLabel, SERVICE_GUIDE } from "../../../lib/renofix-data";
+import { getGuide } from "../../../lib/guides";
 
 export function generateStaticParams() {
   return allServiceAreaParams();
@@ -13,8 +14,8 @@ export function generateMetadata({ params }) {
   const service = getService(params.service);
   const area = getArea(params.area);
   if (!service || !area) return {};
-  const title = `${service.name} in ${area.name}, Dubai`;
-  const description = `Looking for ${service.short} in ${area.name}? RenoFix Plus delivers professional ${service.short} with fixed pricing, licensed teams and a 12-month workmanship warranty (T&Cs apply). Get an instant estimate.`;
+  const title = `${service.name} in ${areaLabel(area)}, Dubai`;
+  const description = `${service.name} in ${areaLabel(area)}, Dubai. ${area.blurb} Fixed, itemised pricing and a 12-month warranty (T&Cs apply).`;
   const canonical = `${SITE.url}/${service.slug}/${area.slug}`;
   return {
     title,
@@ -29,7 +30,12 @@ export default function ServiceAreaPage({ params }) {
   const area = getArea(params.area);
   if (!service || !area || !service.areaTypes.includes(area.type)) notFound();
 
-  const h1 = `${service.name} in ${area.name}`;
+  const h1 = `${service.name} in ${areaLabel(area)}`;
+  const guide = getGuide(SERVICE_GUIDE[service.slug]);
+  // Routine maintenance doesn't need a renovation NOC, so skip the area NOC question there.
+  const faqs = service.slug === "home-maintenance"
+    ? service.faqs
+    : [{ q: `Do I need an NOC for ${service.short} in ${area.name}?`, a: area.nocFaq }, ...service.faqs];
   const canonical = `${SITE.url}/${service.slug}/${area.slug}`;
 
   const relatedAreas = AREAS.filter((a) => a.slug !== area.slug && service.areaTypes.includes(a.type)).slice(0, 6);
@@ -48,7 +54,7 @@ export default function ServiceAreaPage({ params }) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: service.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   };
 
   const breadcrumbSchema = {
@@ -115,6 +121,32 @@ export default function ServiceAreaPage({ params }) {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          Renovating in {area.name}: what to know
+        </h2>
+        <p className="mt-4 max-w-3xl text-slate-600 dark:text-slate-400">{area.intro}</p>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+          {area.notes.map((n) => (
+            <li key={n} className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+              {n}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {guide && (
+        <section className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
+          <Link href={`/guides/${guide.slug}`} className="group flex items-center justify-between gap-4 rounded-2xl border border-amber-500/30 bg-amber-500/5 p-5 transition hover:border-amber-500/60">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">Helpful guide</p>
+              <p className="mt-1 font-display text-base font-semibold">{guide.title}</p>
+            </div>
+            <span className="whitespace-nowrap text-sm font-semibold text-amber-600 dark:text-amber-400">Read &rarr;</span>
+          </Link>
+        </section>
+      )}
+
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 lg:grid-cols-4">
           {[["Licensed", "Fully licensed in Dubai"], ["Local team", `Serving ${area.name}`], ["Fixed pricing", "No hidden costs"], ["Warranty", "12 months, T&Cs apply"]].map(([k, v]) => (
@@ -129,7 +161,7 @@ export default function ServiceAreaPage({ params }) {
       <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{h1} — FAQs</h2>
         <div className="mt-6 space-y-4">
-          {service.faqs.map((f) => (
+          {faqs.map((f) => (
             <div key={f.q} className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
               <p className="font-semibold">{f.q}</p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{f.a}</p>
