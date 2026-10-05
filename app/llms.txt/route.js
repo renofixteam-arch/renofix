@@ -37,6 +37,7 @@ export function GET() {
     "- Bathroom renovation: cosmetic refresh AED 8,000 – 15,000; full rebuild, same layout AED 15,000 – 30,000; full rebuild, new layout AED 25,000 – 50,000+",
     "- Kitchen renovation: refresh AED 15,000 – 30,000; new kitchen, same layout AED 30,000 – 70,000; new kitchen, new layout AED 60,000 – 150,000+",
     "- Per square foot: light refresh AED 80 – 150; mid-level renovation AED 150 – 280; high-spec or full rebuild AED 280 – 500+",
+    "- Waterproofing: bathroom AED 1,500 – 3,000 per bathroom; roof AED 40 – 80 per sqm",
     "",
     `${SITE.name} (renofixplus.ae) is a Dubai renovation contractor. It is not affiliated with "Reno", the UAE renovation-finance platform.`,
     "",
