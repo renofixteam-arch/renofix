@@ -12,6 +12,17 @@ import { SITE } from "../lib/site";
 import { SERVICES, AREAS } from "../lib/renofix-data";
 import { GUIDES } from "../lib/guides";
 
+// Guides featured on the homepage (grid of 6). The rest are on /guides.
+const HOME_GUIDE_SLUGS = [
+  "apartment-renovation-cost-dubai",
+  "villa-renovation-cost-dubai",
+  "bathroom-renovation-cost-dubai",
+  "kitchen-renovation-cost-dubai",
+  "renovation-cost-per-sqft-dubai",
+  "choosing-renovation-contractor-dubai",
+];
+const HOME_GUIDES = HOME_GUIDE_SLUGS.map((slug) => GUIDES.find((g) => g.slug === slug)).filter(Boolean);
+
 const VALUES = [
   { icon: BadgeCheck, title: "Licensed & accountable", body: `Fully licensed contractor. One team owns your project end to end.` },
   { icon: ReceiptText, title: "Fixed, transparent pricing", body: "A clear BOQ before we start. No hidden costs, no surprises mid-project." },
@@ -234,7 +245,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
-          {GUIDES.slice(0, 6).map((g) => (
+          {HOME_GUIDES.map((g) => (
             <Link key={g.slug} href={`/guides/${g.slug}`} className="group rounded-2xl border border-slate-200 p-6 transition hover:border-amber-400 dark:border-slate-800">
               <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{g.readTime}</p>
               <h3 className="mt-2 font-display text-base font-semibold leading-snug">{g.title}</h3>
