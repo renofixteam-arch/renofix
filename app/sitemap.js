@@ -1,6 +1,7 @@
 import { SITE } from "../lib/site";
 import { GUIDES } from "../lib/guides";
 import { SERVICES, allServiceAreaParams } from "../lib/renofix-data";
+import { RU_PATHS, ruPathFor, hreflangFor } from "../lib/i18n";
 
 export default function sitemap() {
   const now = new Date();
@@ -37,5 +38,19 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [home, ...staticPages, ...servicePages, ...areaPages];
+  // Russian (/ru/) twins, with reciprocal hreflang on both language versions.
+  const withLanguages = (entry) => {
+    const path = entry.url === SITE.url ? "/" : entry.url.slice(SITE.url.length);
+    const languages = hreflangFor(path);
+    return languages ? { ...entry, alternates: { languages } } : entry;
+  };
+  const ruPages = RU_PATHS.map((path) => ({
+    url: `${SITE.url}${ruPathFor(path)}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+    alternates: { languages: hreflangFor(path) },
+  }));
+
+  return [...[home, ...staticPages, ...servicePages, ...areaPages].map(withLanguages), ...ruPages];
 }

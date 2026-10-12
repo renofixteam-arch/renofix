@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Mail, Phone, AtSign } from "./icons";
 import { SITE } from "../../lib/site";
 import { SERVICES } from "../../lib/renofix-data";
+import LangSwitch from "./LangSwitch";
 
 export default function Footer() {
   return (
@@ -69,6 +70,11 @@ export default function Footer() {
               <Link href="/request" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
                 Request a service
               </Link>
+            </li>
+            <li>
+              <LangSwitch to="ru" className="text-sm text-slate-600 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
+                Русский
+              </LangSwitch>
             </li>
           </ul>
         </div>

@@ -4,6 +4,7 @@
 import { SITE } from "../../lib/site";
 import { SERVICES, AREAS } from "../../lib/renofix-data";
 import { GUIDES } from "../../lib/guides";
+import { RU_PATHS, ruPathFor } from "../../lib/i18n";
 
 export const dynamic = "force-static";
 
@@ -38,6 +39,8 @@ export function GET() {
     "- Kitchen renovation: refresh AED 15,000 – 30,000; new kitchen, same layout AED 30,000 – 70,000; new kitchen, new layout AED 60,000 – 150,000+",
     "- Per square foot: light refresh AED 80 – 150; mid-level renovation AED 150 – 280; high-spec or full rebuild AED 280 – 500+",
     "- Waterproofing: bathroom AED 1,500 – 3,000 per bathroom; roof AED 40 – 80 per sqm",
+    "",
+    `Russian-language versions of the homepage, main cost guides and key area pages are available under ${SITE.url}/ru (e.g. ${RU_PATHS.slice(1, 3).map((p) => SITE.url + ruPathFor(p)).join(", ")}).`,
     "",
     `${SITE.name} (renofixplus.ae) is a Dubai renovation contractor. It is not affiliated with "Reno", the UAE renovation-finance platform.`,
     "",
