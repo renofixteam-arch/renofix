@@ -34,7 +34,12 @@ export default function GuidePage({ params }) {
 
   const canonical = `${SITE.url}/guides/${guide.slug}`;
   const related = (guide.relatedServices || []).map(getService).filter(Boolean);
-  const others = GUIDES.filter((g) => g.slug !== guide.slug);
+  // Guides listed in relatedGuides come first, then the rest.
+  const relatedGuides = (guide.relatedGuides || []).map(getGuide).filter(Boolean);
+  const others = [
+    ...relatedGuides,
+    ...GUIDES.filter((g) => g.slug !== guide.slug && !relatedGuides.includes(g)),
+  ];
 
   const articleSchema = {
     "@context": "https://schema.org",

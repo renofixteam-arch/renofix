@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getSupabase } from "../../lib/supabase";
 import { SITE } from "../../lib/site";
 import OurWorkGallery from "../components/OurWorkGallery";
@@ -44,6 +45,15 @@ export default async function OurWorkPage() {
       <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
         A selection of renovation, MEP, landscaping and pool projects delivered by RenoFix Plus
         across Dubai.
+      </p>
+      <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
+        RenoFix Plus completes apartment, villa, bathroom, kitchen and MEP projects across Dubai — from
+        Dubai Marina and JVC to Arabian Ranches and Dubai Hills. Every project is delivered on a fixed,
+        itemised price with a 12-month workmanship warranty (T&amp;Cs apply). Browse recent work below, or{" "}
+        <Link href="/request" className="font-medium text-amber-600 hover:underline dark:text-amber-400">
+          request a free site visit
+        </Link>
+        .
       </p>
 
       <OurWorkGallery projects={projects} />

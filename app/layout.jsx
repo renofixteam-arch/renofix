@@ -13,7 +13,7 @@ export const metadata = {
     template: "%s | RenoFix Plus",
   },
   description:
-    "RenoFix Plus delivers apartment, villa, bathroom & kitchen renovation, MEP works, home maintenance, landscaping and swimming pool construction across Dubai. Get an instant estimate.",
+    "RenoFix Plus: apartment, villa, bathroom & kitchen renovation, MEP and maintenance in Dubai — fixed, itemised pricing and a 12-month warranty (T&Cs apply).",
   keywords: [
     "renovation company Dubai",
     "apartment renovation Dubai",
