@@ -15,8 +15,10 @@ export function generateMetadata({ params }) {
   const service = getService(params.service);
   const area = getArea(params.area);
   if (!service || !area) return {};
-  const title = `${service.name} in ${areaLabel(area)}, Dubai`;
-  const description = `${service.name} in ${areaLabel(area)}, Dubai. ${area.blurb} Fixed, itemised pricing and a 12-month warranty (T&Cs apply).`;
+  // Skip the ", Dubai" suffix when the area name already says Dubai.
+  const place = /dubai/i.test(areaLabel(area)) ? areaLabel(area) : `${areaLabel(area)}, Dubai`;
+  const title = `${service.name} in ${place}`;
+  const description = `${service.name} in ${place}. ${area.blurb} Fixed, itemised pricing and a 12-month warranty (T&Cs apply).`;
   const canonical = `${SITE.url}/${service.slug}/${area.slug}`;
   return {
     title,
