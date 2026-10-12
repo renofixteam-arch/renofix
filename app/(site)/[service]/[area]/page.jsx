@@ -3,8 +3,8 @@ import Link from "next/link";
 import EstimateWizard from "../../../components/EstimateWizard";
 import SlotBackground from "../../../components/SlotBackground";
 import { SITE } from "../../../../lib/site";
-import { SERVICES, AREAS, getService, getArea, allServiceAreaParams, areaLabel, SERVICE_GUIDE } from "../../../../lib/renofix-data";
-import { getGuide } from "../../../../lib/guides";
+import { SERVICES, AREAS, getService, getArea, allServiceAreaParams, areaLabel, serviceFitsArea, SERVICE_GUIDE } from "../../../../lib/renofix-data";
+import { getGuide, priceListFor } from "../../../../lib/guides";
 import { hreflangFor } from "../../../../lib/i18n";
 
 export function generateStaticParams() {
@@ -29,18 +29,25 @@ export function generateMetadata({ params }) {
 export default function ServiceAreaPage({ params }) {
   const service = getService(params.service);
   const area = getArea(params.area);
-  if (!service || !area || !service.areaTypes.includes(area.type)) notFound();
+  if (!service || !area || !serviceFitsArea(service, area)) notFound();
 
   const h1 = `${service.name} in ${areaLabel(area)}`;
   const guide = getGuide(SERVICE_GUIDE[service.slug]);
   // Routine maintenance doesn't need a renovation NOC, so skip the area NOC question there.
+  const nocQuestion = area.newHandover
+    ? `Do I need approval for ${service.short} in ${area.name}?`
+    : `Do I need an NOC for ${service.short} in ${area.name}?`;
   const faqs = service.slug === "home-maintenance"
     ? service.faqs
-    : [{ q: `Do I need an NOC for ${service.short} in ${area.name}?`, a: area.nocFaq }, ...service.faqs];
+    : [{ q: nocQuestion, a: area.nocFaq }, ...service.faqs];
+  // Indicative budget from the matching cost guide (renovation services only;
+  // not shown for newly handed-over homes, where there is nothing to renovate).
+  const prices = area.newHandover ? null : priceListFor(service.slug);
+  const angle = area.angles?.[service.slug];
   const canonical = `${SITE.url}/${service.slug}/${area.slug}`;
 
-  const relatedAreas = AREAS.filter((a) => a.slug !== area.slug && service.areaTypes.includes(a.type)).slice(0, 6);
-  const otherServices = SERVICES.filter((s) => s.slug !== service.slug && s.areaTypes.includes(area.type)).slice(0, 6);
+  const relatedAreas = AREAS.filter((a) => a.slug !== area.slug && serviceFitsArea(service, a)).slice(0, 6);
+  const otherServices = SERVICES.filter((s) => s.slug !== service.slug && serviceFitsArea(s, area)).slice(0, 6);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -91,7 +98,9 @@ export default function ServiceAreaPage({ params }) {
             </span>
             <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">{h1}</h1>
             <p className="mt-4 max-w-lg text-base text-slate-600 sm:text-lg dark:text-slate-400">
-              {service.intro} RenoFix Plus serves {area.name} and all surrounding Dubai communities with licensed teams and fixed, transparent pricing.
+              {area.newHandover
+                ? `${service.intro} RenoFix Plus works with owners of newly handed-over homes in ${area.name}, with licensed teams and fixed, transparent pricing.`
+                : `${service.intro} RenoFix Plus serves ${area.name} and all surrounding Dubai communities with licensed teams and fixed, transparent pricing.`}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#estimate" className="flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
@@ -124,9 +133,25 @@ export default function ServiceAreaPage({ params }) {
 
       <section className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Renovating in {area.name}: what to know
+          {area.newHandover ? `New homes in ${area.name}: what to know` : `Renovating in ${area.name}: what to know`}
         </h2>
+        {angle && <p className="mt-4 max-w-3xl font-medium text-slate-700 dark:text-slate-300">{angle}</p>}
         <p className="mt-4 max-w-3xl text-slate-600 dark:text-slate-400">{area.intro}</p>
+        {area.profile && (
+          <dl className="mt-6 grid gap-x-6 gap-y-3 rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm sm:grid-cols-2 dark:border-slate-800 dark:bg-slate-900/50">
+            {[
+              ["Developer", area.profile.developer],
+              ["Homes", area.profile.homes],
+              ["Handover", area.profile.handover],
+              ["Approvals", area.profile.approvals],
+            ].filter(([, v]) => v).map(([k, v]) => (
+              <div key={k}>
+                <dt className="font-semibold text-slate-900 dark:text-white">{k}</dt>
+                <dd className="mt-0.5 text-slate-600 dark:text-slate-400">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {area.notes.map((n) => (
             <li key={n} className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
@@ -135,6 +160,26 @@ export default function ServiceAreaPage({ params }) {
           ))}
         </ul>
       </section>
+
+      {prices && (
+        <section className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Indicative budget</h2>
+          <p className="mt-2 max-w-3xl text-sm text-slate-600 dark:text-slate-400">
+            Typical Dubai ranges from our{" "}
+            <Link href={`/guides/${prices.guide.slug}`} className="font-medium text-amber-600 hover:underline dark:text-amber-400">
+              {prices.guide.title.split(":")[0]} guide
+            </Link>
+            . Your fixed price comes from an itemised quote after a site visit in {area.name}.
+          </p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {prices.list.map((item) => (
+              <li key={item} className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {guide && (
         <section className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">

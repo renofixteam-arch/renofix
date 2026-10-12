@@ -9,7 +9,8 @@ Stack: Next.js (App Router) + Supabase, hosted on Vercel. Every push to `main` a
 - `lib/guides.js` — guide articles (`/guides/[slug]`)
 - `lib/renofix-data.js` — services and areas
 - `lib/site.js` — site config (URL, phone, WhatsApp, email, tracking IDs)
-- `app/(site)/[service]/[area]` — service × area landing pages
+- `app/(site)/[service]/[area]` — service × area landing pages. Newer areas list their services in `services` (helper `serviceFitsArea`) and carry a `profile`, per-service `angles` and, for newly handed-over communities, `newHandover: true` (pages lead with fit-out, not renovation pricing). Area pages for renovation services show the price list from the matching guide (`priceListFor` in `lib/guides.js`) — never hard-code prices on area pages.
+- New areas must have real, area-specific content (developer, homes, approvals, notes, angles) — no thin "renovation in X" pages. Only add a new-handover community once handover has actually started (District 11 / Opal Gardens is on hold for that reason).
 - `app/(site)/our-work` — projects gallery; projects come from the Supabase `projects` table (managed in `/admin/projects`)
 - `app/(site)/admin`, `app/api/admin` — admin panel and its API
 - English pages live in the `app/(site)/` route group (URLs unchanged); Russian pages in `app/ru/`. Each group has its own root layout so `/ru/` renders `<html lang="ru">`.

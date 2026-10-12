@@ -164,6 +164,16 @@ export default function SubcontractingPage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pt-6 sm:px-6">
+        <p className="text-sm text-slate-600 dark:text-slate-400">
+          Homeowner or landlord looking for design and build rather than a subcontractor? See{" "}
+          <Link href="/interior-design-fit-out" className="font-medium text-amber-600 hover:underline dark:text-amber-400">
+            interior design &amp; fit-out
+          </Link>
+          .
+        </p>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         <Link href="/guides/hiring-mep-subcontractor-dubai" className="group flex items-center justify-between gap-4 rounded-2xl border border-amber-500/30 bg-amber-500/5 p-5 transition hover:border-amber-500/60">
           <div>

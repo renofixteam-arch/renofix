@@ -20,6 +20,7 @@ const ICONS = {
   "painting-flooring": Hammer,
   "false-ceiling-partitions": Building2,
   "home-maintenance": ShieldCheck,
+  "interior-design-fit-out": Home,
 };
 
 export default function ServiceCards() {

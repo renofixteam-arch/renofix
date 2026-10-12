@@ -9,7 +9,7 @@ import ServiceCards from "../components/ServiceCards";
 import Reviews from "../components/Reviews";
 import SlotBackground from "../components/SlotBackground";
 import { SITE } from "../../lib/site";
-import { SERVICES, AREAS } from "../../lib/renofix-data";
+import { SERVICES, AREAS, primaryServiceFor } from "../../lib/renofix-data";
 import { hreflangFor } from "../../lib/i18n";
 import { GUIDES } from "../../lib/guides";
 
@@ -38,7 +38,7 @@ const STEPS = [
 ];
 
 function serviceHref(area) {
-  return area.type === "villa" ? `/villa-renovation/${area.slug}` : `/apartment-renovation/${area.slug}`;
+  return `/${primaryServiceFor(area)}/${area.slug}`;
 }
 
 

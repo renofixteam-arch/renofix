@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SITE } from "../../../../lib/site";
 import { GUIDES, getGuide } from "../../../../lib/guides";
-import { getService } from "../../../../lib/renofix-data";
+import { getService, getArea, areaLabel } from "../../../../lib/renofix-data";
 import { hreflangFor } from "../../../../lib/i18n";
 import { ArrowRight } from "../../../components/icons";
 
@@ -155,6 +155,29 @@ export default function GuidePage({ params }) {
             ))}
           </div>
         </section>
+
+        {/* Area pages this guide supports */}
+        {guide.areaLinks?.length > 0 && (
+          <section className="mt-12">
+            <h2 className="font-display text-lg font-semibold">By community</h2>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              {guide.areaLinks.map(({ service, area }) => {
+                const s = getService(service);
+                const a = getArea(area);
+                if (!s || !a) return null;
+                return (
+                  <Link
+                    key={`${service}/${area}`}
+                    href={`/${service}/${area}`}
+                    className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium transition hover:border-amber-400 dark:border-slate-800"
+                  >
+                    {s.name} in {areaLabel(a)}
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* Related services */}
         {related.length > 0 && (

@@ -14,7 +14,9 @@ export function generateMetadata({ params }) {
   const service = getService(params.service);
   if (!service) return {};
   const title = `${service.name} in Dubai`;
-  const description = `Professional ${service.short} in Dubai by RenoFix Plus. Fixed pricing, licensed teams and a 12-month workmanship warranty (T&Cs apply). Get an instant estimate online.`;
+  const description =
+    service.metaDescription ||
+    `Professional ${service.short} in Dubai by RenoFix Plus. Fixed pricing, licensed teams and a 12-month workmanship warranty (T&Cs apply). Get an instant estimate online.`;
   const canonical = `${SITE.url}/${service.slug}`;
   return {
     title,
@@ -115,6 +117,37 @@ export default function ServicePage({ params }) {
           ))}
         </div>
       </section>
+
+      {service.hub && (
+        <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{service.hub.processTitle}</h2>
+          {service.hub.body.map((p) => (
+            <p key={p} className="mt-4 max-w-3xl text-slate-600 dark:text-slate-400">{p}</p>
+          ))}
+          <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {service.hub.process.map(([title, body], i) => (
+              <li key={title} className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+                <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">Step {i + 1}</p>
+                <p className="mt-1 font-semibold">{title}</p>
+                <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400">{body}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 text-sm text-slate-600 dark:text-slate-400">
+            Every project is priced as a fixed, itemised quote and covered by our 12-month workmanship warranty (
+            <Link href="/warranty" className="font-medium text-amber-600 hover:underline dark:text-amber-400">T&amp;Cs apply</Link>
+            ). See also:{" "}
+            <Link href="/cost-calculator" className="font-medium text-amber-600 hover:underline dark:text-amber-400">cost calculator</Link>
+            {" · "}
+            <Link href="/guides" className="font-medium text-amber-600 hover:underline dark:text-amber-400">cost guides</Link>
+            {" · "}
+            <Link href="/our-work" className="font-medium text-amber-600 hover:underline dark:text-amber-400">our work</Link>
+            {" · "}
+            <Link href="/subcontracting" className="font-medium text-amber-600 hover:underline dark:text-amber-400">fit-out subcontracting for contractors</Link>
+            .
+          </p>
+        </section>
+      )}
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
