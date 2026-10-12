@@ -6,6 +6,12 @@ import LogoutButton from "./LogoutButton";
 
 export const dynamic = "force-dynamic";
 
+// Admin pages are private: keep them out of search results.
+export const metadata = {
+  robots: { index: false, follow: false },
+  alternates: { canonical: null },
+};
+
 export default function AdminLayout({ children }) {
   const val = cookies().get(COOKIE_NAME)?.value;
   if (!isValidToken(val)) redirect("/login");
