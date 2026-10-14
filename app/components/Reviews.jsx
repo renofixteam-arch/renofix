@@ -33,8 +33,37 @@ export default function Reviews({ limit = 6, heading = "What our customers say" 
     load();
   }, []);
 
-  // Don't render the section at all until we have reviews (avoids an empty block).
-  if (!loaded || reviews.length === 0) return null;
+  if (!loaded) return null;
+
+  // No reviews in the database yet: if a Google review link is set, still show a
+  // compact "Review us on Google" call-to-action so customers can leave the first
+  // one. (Without this the whole section stays hidden until a review exists.)
+  if (reviews.length === 0) {
+    if (!SITE.googleReviewUrl) return null;
+    return (
+      <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+        <div className="mx-auto max-w-6xl px-4 py-12 text-center sm:px-6 sm:py-14">
+          <p className="font-display text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+            Reviews
+          </p>
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">
+            Worked with us? Leave a review
+          </h2>
+          <p className="mx-auto mt-2 max-w-md text-sm text-slate-600 dark:text-slate-400">
+            Your feedback helps other Dubai homeowners choose with confidence.
+          </p>
+          <a
+            href={SITE.googleReviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center justify-center rounded-xl bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-amber-400"
+          >
+            Review us on Google
+          </a>
+        </div>
+      </section>
+    );
+  }
 
   const shown = reviews.slice(0, limit);
   const avg = (reviews.reduce((s, r) => s + (r.rating || 5), 0) / reviews.length).toFixed(1);
