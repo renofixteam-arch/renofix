@@ -48,11 +48,14 @@ export default function GuidePage({ params }) {
     headline: guide.title,
     description: guide.description,
     url: canonical,
-    author: { "@type": "Organization", name: SITE.name },
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    image: `${SITE.url}${SITE.ogImage}`,
+    author: { "@type": "Organization", name: SITE.name, url: SITE.url },
     publisher: {
       "@type": "Organization",
       name: SITE.name,
       url: SITE.url,
+      logo: { "@type": "ImageObject", url: `${SITE.url}/icon` },
     },
     inLanguage: "en-AE",
   };
