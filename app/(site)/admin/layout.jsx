@@ -19,9 +19,9 @@ export default function AdminLayout({ children }) {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4 dark:border-slate-800">
-        <div className="flex items-center gap-5">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <span className="text-lg font-bold">RenoFix Plus Admin</span>
-          <nav className="flex gap-4 text-sm">
+          <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
             <Link href="/admin/rates" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
               Rates
             </Link>
@@ -33,6 +33,9 @@ export default function AdminLayout({ children }) {
             </Link>
             <Link href="/admin/leads" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
               Leads
+            </Link>
+            <Link href="/admin/survey" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
+              Survey
             </Link>
             <Link href="/admin/reviews" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
               Reviews
