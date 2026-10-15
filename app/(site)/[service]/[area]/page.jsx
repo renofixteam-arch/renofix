@@ -17,7 +17,9 @@ export function generateMetadata({ params }) {
   if (!service || !area) return {};
   // Skip the ", Dubai" suffix when the area name already says Dubai.
   const place = /dubai/i.test(areaLabel(area)) ? areaLabel(area) : `${areaLabel(area)}, Dubai`;
-  const title = `${service.name} in ${place}`;
+  // Searchers look for a "contractor" for these two; match the phrase in the title.
+  const TITLE_NOUN = { landscaping: "Landscaping Contractor", "swimming-pool-construction": "Swimming Pool Contractor" };
+  const title = `${TITLE_NOUN[service.slug] || service.name} in ${place}`;
   const description = `${service.name} in ${place}. ${area.blurb} Fixed, itemised pricing and a 12-month warranty (T&Cs apply).`;
   const canonical = `${SITE.url}/${service.slug}/${area.slug}`;
   return {
