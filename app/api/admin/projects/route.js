@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { isValidToken, COOKIE_NAME } from "../../../../lib/auth";
 import { getServiceClient } from "../../../../lib/supabase-admin";
@@ -57,6 +58,7 @@ export async function POST(request) {
     .single();
   if (ins.error) return NextResponse.json({ error: ins.error.message }, { status: 500 });
 
+  revalidatePath("/our-work");
   return NextResponse.json({ ok: true, project: ins.data });
 }
 
@@ -73,5 +75,6 @@ export async function DELETE(request) {
   }
   const { error } = await supabase.from("projects").delete().eq("id", id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  revalidatePath("/our-work");
   return NextResponse.json({ ok: true });
 }
