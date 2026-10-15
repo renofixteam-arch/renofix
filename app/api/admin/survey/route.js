@@ -4,9 +4,8 @@ import { createClient } from "@supabase/supabase-js";
 import { isValidToken, COOKIE_NAME } from "../../../../lib/auth";
 import { getServiceClient } from "../../../../lib/supabase-admin";
 
-// Survey answers from /survey live in the table below.
-// If that table is in a different Supabase project than this site,
-// set SURVEY_SUPABASE_URL and SURVEY_SUPABASE_SERVICE_ROLE_KEY in Vercel.
+// Survey answers from /survey live in this site's own Supabase project.
+// Optional override: SURVEY_SUPABASE_URL + SURVEY_SUPABASE_SERVICE_ROLE_KEY.
 const TABLE = "site_delivery_survey";
 
 function guard() {
