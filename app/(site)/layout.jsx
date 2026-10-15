@@ -1,6 +1,6 @@
 import "../globals.css";
 import { SITE } from "../../lib/site";
-import { localBusinessSchema } from "../../lib/schema";
+import { localBusinessSchema, webSiteSchema } from "../../lib/schema";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
@@ -46,6 +46,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
         <Header />
         {children}

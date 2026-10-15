@@ -4,36 +4,35 @@ import { SERVICES, allServiceAreaParams } from "../lib/renofix-data";
 import { RU_PATHS, ruPathFor, hreflangFor } from "../lib/i18n";
 
 export default function sitemap() {
-  const now = new Date();
-  const home = { url: SITE.url, lastModified: now, changeFrequency: "weekly", priority: 1 };
+  const home = { url: SITE.url, changeFrequency: "weekly", priority: 1 };
 
   const staticPages = [
-    { url: `${SITE.url}/cost-calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE.url}/guides`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE.url}/cost-calculator`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE.url}/guides`, changeFrequency: "monthly", priority: 0.7 },
     ...GUIDES.map((g) => ({
       url: `${SITE.url}/guides/${g.slug}`,
-      lastModified: now,
+     
       changeFrequency: "monthly",
       priority: 0.7,
     })),
-    { url: `${SITE.url}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${SITE.url}/subcontracting`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE.url}/our-work`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${SITE.url}/request`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE.url}/warranty`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${SITE.url}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE.url}/about`, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${SITE.url}/subcontracting`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE.url}/our-work`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/request`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE.url}/warranty`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE.url}/privacy`, changeFrequency: "yearly", priority: 0.2 },
   ];
 
   const servicePages = SERVICES.map((s) => ({
     url: `${SITE.url}/${s.slug}`,
-    lastModified: now,
+   
     changeFrequency: "monthly",
     priority: 0.9,
   }));
 
   const areaPages = allServiceAreaParams().map((p) => ({
     url: `${SITE.url}/${p.service}/${p.area}`,
-    lastModified: now,
+   
     changeFrequency: "monthly",
     priority: 0.8,
   }));
@@ -46,7 +45,7 @@ export default function sitemap() {
   };
   const ruPages = RU_PATHS.map((path) => ({
     url: `${SITE.url}${ruPathFor(path)}`,
-    lastModified: now,
+   
     changeFrequency: "monthly",
     priority: 0.7,
     alternates: { languages: hreflangFor(path) },

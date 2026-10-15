@@ -1,6 +1,6 @@
 import "../globals.css";
 import { SITE } from "../../lib/site";
-import { localBusinessSchema } from "../../lib/schema";
+import { localBusinessSchema, webSiteSchema } from "../../lib/schema";
 import { RU_WHATSAPP_TEXT, RU_REVIEW_PENDING, RU_REVIEW_NOTE } from "../../lib/ru-ui";
 import RuHeader from "../components/RuHeader";
 import RuFooter from "../components/RuFooter";
@@ -24,6 +24,10 @@ export default function RuLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
         <RuHeader />
         {RU_REVIEW_PENDING && (
