@@ -22,13 +22,16 @@ export default function Analytics() {
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
-  const id = SITE.gads?.id;
-  if (!id) return null;
+  // One gtag.js load serves both Google Analytics 4 and Google Ads; events
+  // without send_to (e.g. generate_lead) go to every configured ID.
+  const ids = [SITE.ga4, SITE.gads?.id].filter(Boolean);
+  if (ids.length === 0) return null;
+  const configs = ids.map((id) => `gtag('config','${id}');`).join("");
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${ids[0]}`} strategy="afterInteractive" />
       <Script id="gtag-init" strategy="afterInteractive">
-        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');`}
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());${configs}`}
       </Script>
     </>
   );
