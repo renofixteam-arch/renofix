@@ -1,4 +1,5 @@
 import "../globals.css";
+import Script from "next/script";
 import { SITE } from "../../lib/site";
 import { localBusinessSchema, webSiteSchema } from "../../lib/schema";
 import Header from "../components/Header";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <FloatingWhatsApp />
         <Analytics />
+        <Script src="https://shinedigit.com/seo.js?k=XGpeQqC5dXL9KiHZ" strategy="afterInteractive" />
       </body>
     </html>
   );

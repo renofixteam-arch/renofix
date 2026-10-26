@@ -1,4 +1,5 @@
 import "../globals.css";
+import Script from "next/script";
 import { SITE } from "../../lib/site";
 import { localBusinessSchema, webSiteSchema } from "../../lib/schema";
 import { RU_WHATSAPP_TEXT, RU_REVIEW_PENDING, RU_REVIEW_NOTE } from "../../lib/ru-ui";
@@ -48,6 +49,7 @@ export default function RuLayout({ children }) {
         <RuFooter />
         <FloatingWhatsApp label="Написать в WhatsApp" text={RU_WHATSAPP_TEXT} />
         <Analytics />
+        <Script src="https://shinedigit.com/seo.js?k=XGpeQqC5dXL9KiHZ" strategy="afterInteractive" />
       </body>
     </html>
   );
