@@ -226,4 +226,3 @@ the form. Aimed at converting ad clicks into leads while the site has no reviews
   readable so the site can display them).
 - Paste your Google review link into lib/site.js (googleReviewUrl) to turn on the
   "Leave us a review" button. Admin nav now: Rates · Site Images · Gallery · Leads · Reviews · SEO.
-Test line: push from shinedigit pc.
