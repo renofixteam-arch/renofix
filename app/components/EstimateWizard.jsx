@@ -80,7 +80,7 @@ export default function EstimateWizard() {
     if (!area || !base) return null;
     const f = TIERS[a.finish].factor;
     const bathR = rates.bathroom;
-    const kitR = rates.kitchen;
+    const kitR = a.bedroom === "studio" ? rates.kitchen_studio || rates.kitchen : rates.kitchen;
     const nBath = parseInt(a.bathroom) || 0;
     const nKit = parseInt(a.kitchen) || 0;
     let low = area * base.low * f;

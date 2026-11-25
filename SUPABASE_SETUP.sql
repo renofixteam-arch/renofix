@@ -19,6 +19,7 @@ insert into public.estimate_rates (key, label, unit, low, high, min, sort) value
   ('apartment',   'Apartment – general areas (per sqft)',         'sqft',     35,   70,   35000, 1),
   ('villa',       'Villa / townhouse – general areas (per sqft)', 'sqft',     45,   100,  35000, 2),
   ('bathroom',    'Bathroom (per bathroom)', 'bathroom', 15000,30000,15000, 3),
+  ('kitchen_studio', 'Kitchen – studio (per kitchen)', 'kitchen', 15000,30000,15000, 4),
   ('kitchen',     'Kitchen (per kitchen)',   'kitchen',  30000,70000,30000, 4),
   ('mep',         'MEP Works',               'sqft',     25,   60,   5000,  5),
   ('maintenance', 'Home Maintenance (AMC)',  'package',  1500, 6000, 1500,  6),
